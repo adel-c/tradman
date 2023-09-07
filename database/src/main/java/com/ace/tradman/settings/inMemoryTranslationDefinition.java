@@ -34,12 +34,14 @@ public class inMemoryTranslationDefinition implements TranslationDefinitionRepos
         Optional<TranslationDefinition> first = settingDefinitions.stream().filter(d -> d.getKey().equals(settingDefinition.getKey())).findFirst();
         if (first.isPresent()){
             first.get().setExpand(settingDefinition.isExpand());
+            return first.get();
         }else {
             settingDefinition.setId(UUID.randomUUID().toString());
             settingDefinitions.add(settingDefinition);
+            return settingDefinition;
         }
 
-        return settingDefinition;
+
     }
 
     @Override

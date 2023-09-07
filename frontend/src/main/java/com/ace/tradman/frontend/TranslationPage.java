@@ -40,7 +40,7 @@ public class TranslationPage {
                 .build();
 
         TranslationDefinition translationDefinition = translationDefinitionService.upsertSettingDefinition(build);
-        model.addAttribute("translationDefinition", translationDefinition);
-        return "./translation_definition/translation_definition_table_row";
+        model.addAttribute("translationDefinitions", translationDefinitionService.listAllDefinitions());
+        return "./translation_definition/translation_definition_table";
     }
 }

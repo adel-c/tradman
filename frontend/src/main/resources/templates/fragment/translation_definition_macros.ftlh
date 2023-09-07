@@ -1,3 +1,3 @@
-<#macro transaltionDefinitionRow translationDefinition>
-    ${translationDefinition.key} <br/> XXXX RO RO
+<#macro machin translationDefinition <#-- com.ace.tradman.translation.TranslationDefinition -->>
+    rien
 </#macro>

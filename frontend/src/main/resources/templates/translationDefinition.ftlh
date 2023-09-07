@@ -1,4 +1,8 @@
+
+<#import "./fragment/translation_definition_macros.ftlh" as f>
 <!DOCTYPE html>
+
+
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
@@ -25,10 +29,7 @@
 
 
 
-    <#list translationDefinitions as item>
-        ${item.key} <br/>
-
-    </#list>
+   <@f.transaltionDefinitionTable translationDefinitions=translationDefinitions></@f.transaltionDefinitionTable>
 </main>
 </body>
 </html>

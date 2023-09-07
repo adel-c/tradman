@@ -18,9 +18,7 @@ public class MainController {
     @GetMapping()
     public String main(@ModelAttribute("model") ModelMap model, @RequestParam Map<String, String> allRequestParams
     ) {
-        model.addAttribute("time", new Date());
-        model.addAttribute("carList", List.of());
-        model.addAttribute("fragment", "/page/main");
+
         return "index";
     }
 

@@ -10,9 +10,12 @@
 <body>
 
 
-
 <main id="mainContent" class="container">
  la page
+    <#list translationDefinitions as item>
+        ${item.key} <br/>
+
+    </#list>
 </main>
 </body>
 </html>

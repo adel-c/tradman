@@ -8,11 +8,15 @@ import java.util.List;
 @AllArgsConstructor
 @Service
 public class TranslationDefinitionService {
-    List<TranslationDefinition> listAllDefinitions() {
-        return List.of();
+    private TranslationDefinitionRepository translationDefinitionRepository;
+    public List<TranslationDefinition> listAllDefinitions() {
+        return translationDefinitionRepository.listAllDefinitions();
     }
-    TranslationDefinition upsertSettingDefinition(TranslationDefinition translationDefinition){
-        return translationDefinition;
+    public TranslationDefinition upsertSettingDefinition(TranslationDefinition translationDefinition){
+        return translationDefinitionRepository.upsertTranslationDefinition(translationDefinition);
     }
-    void deleteSettingDefinition(String translationDefinitionId) {}
+    public void deleteSettingDefinition(String translationDefinitionId) {
+
+        translationDefinitionRepository.deleteTranslationDefinition(translationDefinitionId);
+    }
 }

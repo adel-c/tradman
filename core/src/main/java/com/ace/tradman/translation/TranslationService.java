@@ -1,13 +1,25 @@
 package com.ace.tradman.translation;
 
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
+@Service
+@AllArgsConstructor
 public class TranslationService {
-    List<Translation> listAll() {
-        return List.of();
+
+    private TranslationRepository translationRepository;
+
+    public List<Translation> listAll() {
+        return translationRepository.listAll();
     }
-    Translation upsertTranslation(Translation translation) {
-        return null;
+
+    public Translation upsertTranslation(Translation translation) {
+        return translationRepository.upsertTranslation(translation);
     }
-    void deleteTranslation(String translationId){}
+
+    public void deleteTranslation(String translationId) {
+        translationRepository.deleteTranslation(translationId);
+    }
 }

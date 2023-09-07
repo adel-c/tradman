@@ -1,0 +1,21 @@
+<div xmlns:th="http://www.thymeleaf.org">
+    <div>updated at <p th:text="${time.getTime()}"></p></div>
+    <table>
+        <thead>
+        <tr>
+            <th>machin</th>
+            <th>truc</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>r1</td>
+            <td>r2</td>
+        </tr>
+        <tr th:each="p : ${persons}">
+            <td th:text="${p.getName()}">1</td>
+            <td th:text="${p.getAge()}">Thymus Thymi</td>
+        </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,24 @@
+<table hx-get="/setting/table" hx-trigger="update_setting_table from:body" hx-swap="outerHTML">
+    <thead>
+    <tr>
+        <th> country </th>
+        <th> partner </th>
+        <th> profile </th>
+        <th> key </th>
+        <th> value </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${settings.empty}">
+        <td colspan="2"> No definition Available </td>
+    </tr>
+    <tr th:each="setting : ${settings}">
+        <td><span th:text="${setting.countryId}"> countryId </span></td>
+        <td><span th:text="${setting.partnerId}"> partnerId </span></td>
+        <td><span th:text="${setting.profileId}"> profileId </span></td>
+        <td><span th:text="${setting.SettingDefinitionId}"> SettingDefinitionId </span></td>
+        <td><span th:text="${setting.value}"> value </span></td>
+    </tr>
+    </tbody>
+
+</table>

@@ -1,0 +1,15 @@
+<div> la page main</div>
+
+<h1>Hello, world!</h1>
+machin la page truc
+
+<div th:utext="${time.getTime()}"></div>
+<div th:utext="${name}"></div>
+
+<a th:href="@{/c/2}">go to p2</a>
+
+<button  hx-get="/api/clicked" hx-swap="innerHTML" hx-target="#result-table"
+>
+    Click Me
+</button>
+<div id="result-table"></div>

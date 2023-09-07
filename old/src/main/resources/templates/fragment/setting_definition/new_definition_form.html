@@ -1,0 +1,12 @@
+<form hx-post="/setting-definition" hx-history="false" hx-swap="outerHTML">
+    <label for="key">key</label>
+    <input id="key" type="text" name="key"/>
+
+    <label for="type">key</label>
+
+    <select name="type" id="type">
+        <option th:each="type : ${T(com.ace.tradman.settings.SettingType).values()}"
+                th:value="${type}" th:text="${type}"></option>
+    </select>
+    <button>submit</button>
+</form>

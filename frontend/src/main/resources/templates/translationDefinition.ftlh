@@ -1,4 +1,3 @@
-
 <#import "./fragment/translation_definition_macros.ftlh" as f>
 <!DOCTYPE html>
 
@@ -16,7 +15,7 @@
 
 <main id="mainContent" class="container">
 
-    <form hx-post="/translation-definition" hx-history="false" hx-swap="outerHTML">
+    <form hx-post="/translation-definition" hx-history="false" hx-swap="beforebegin" hx-target="#translation_definition_table">
         <label for="key">key</label>
         <input id="key" type="text" name="key"/>
 
@@ -27,9 +26,13 @@
         <button>submit</button>
     </form>
 
+<table id="translation_definition_table">
 
+    <#list translationDefinitions as translationDefinition>
+        <@f.transaltionDefinitionRow translationDefinition=translationDefinition ></@f.transaltionDefinitionRow>
+    </#list>
+</table>
 
-   <@f.transaltionDefinitionTable translationDefinitions=translationDefinitions></@f.transaltionDefinitionTable>
 </main>
 </body>
 </html>

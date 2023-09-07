@@ -39,8 +39,8 @@ public class TranslationPage {
 
                 .build();
 
-        translationDefinitionService.upsertSettingDefinition(build);
-        model.addAttribute("translationDefinitions", translationDefinitionService.listAllDefinitions());
-        return "translationDefinition";
+        TranslationDefinition translationDefinition = translationDefinitionService.upsertSettingDefinition(build);
+        model.addAttribute("translationDefinition", translationDefinition);
+        return "./translation_definition/translation_definition_table_row";
     }
 }

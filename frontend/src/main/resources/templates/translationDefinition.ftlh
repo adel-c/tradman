@@ -11,7 +11,20 @@
 
 
 <main id="mainContent" class="container">
- la page
+
+    <form hx-post="/translation-definition" hx-history="false" hx-swap="outerHTML">
+        <label for="key">key</label>
+        <input id="key" type="text" name="key"/>
+
+        <label for="expand">expand</label>
+        <input id="expand" type="checkbox" name="expand" checked/>
+
+
+        <button>submit</button>
+    </form>
+
+
+
     <#list translationDefinitions as item>
         ${item.key} <br/>
 

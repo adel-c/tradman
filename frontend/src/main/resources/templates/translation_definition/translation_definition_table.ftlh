@@ -2,6 +2,7 @@
     <thead>
     <tr>
         <th>key</th>
+        <th>definition</th>
         <th>expand</th>
     </tr>
     </thead>
@@ -11,7 +12,8 @@
         <tr>
 
             <td>    ${translationDefinition.key} </td>
-            <td>    ${translationDefinition.expand?c} </td>
+            <td>    ${translationDefinition.definition!''} </td>
+            <td>    ${translationDefinition.expand?string('yes', 'no') } </td>
         </tr>
     </#list>
     </tbody>

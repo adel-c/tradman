@@ -23,7 +23,7 @@ import java.util.Optional;
 import java.util.function.Function;
 
 import static com.ace.tradman.frontend.ModelUtils.addConstToModel;
-import static com.ace.tradman.frontend.TriggersConst.*;
+import static com.ace.tradman.frontend.TriggersConst.RELOAD_TRANSLATION_TABLE;
 
 @Controller
 @RequestMapping("/translation")
@@ -82,18 +82,19 @@ public class TranslationPage {
 
     @GetMapping("/update/{partner}/{country}/{profile}/{language}/{key}")
     public String updateModal(Model model,
-                              @PathVariable("partner")String partner,
-                              @PathVariable("country")String country,
-                              @PathVariable("profile")String profile,
-                              @PathVariable("language")String language,
-                              @PathVariable("key")String key
+                              @PathVariable("partner") String partner,
+                              @PathVariable("country") String country,
+                              @PathVariable("profile") String profile,
+                              @PathVariable("language") String language,
+                              @PathVariable("key") String key
     ) {
         addConstToModel(model);
         addDataForSearchForm(model);
         Optional<Translation> translation = translationService.searchFor(partner, country, profile, language, key);
-        System.out.println(translation.isPresent());
+        translation.ifPresent(value -> model.addAttribute("translation", value));
         return "translation/new_translation_modal";
     }
+
     public <T> List<SelectOption> toSelectOptions(List<T> values, Function<T, String> valueGetter, Function<T, String> labelGetter) {
         return values.stream().map(v -> new SelectOption(valueGetter.apply(v), labelGetter.apply(v))).toList();
     }

@@ -42,11 +42,7 @@ public class TranslationPage {
     public String main(Model model
     ) {
         addConstToModel(model);
-        model.addAttribute("translationKeys", toSelectOptions(translationDefinitionService.allKeys()));
-        model.addAttribute("partners", toSelectOptions(partnerService.findAll(), Partner::id, Partner::name));
-        model.addAttribute("countries", toSelectOptions(countryService.findAll(), Country::getId, Country::getLabel));
-        model.addAttribute("profiles", toSelectOptions(profileService.findAll(), Profile::id, Profile::name));
-        model.addAttribute("languages", toSelectOptions(languageService.findAll()));
+        addDataForSearchForm(model);
         return "translation";
     }
 
@@ -55,13 +51,17 @@ public class TranslationPage {
                                         HttpServletResponse response
     ) {
         addConstToModel(model);
+        addDataForSearchForm(model);
         addTriggerHeader(response, RELOAD_TRANSLATION_TABLE);
+        return "translation/translation_search_form";
+    }
+
+    private void addDataForSearchForm(Model model) {
         model.addAttribute("translationKeys", toSelectOptions(translationDefinitionService.allKeys()));
         model.addAttribute("partners", toSelectOptions(partnerService.findAll(), Partner::id, Partner::name));
         model.addAttribute("countries", toSelectOptions(countryService.findAll(), Country::getId, Country::getLabel));
         model.addAttribute("profiles", toSelectOptions(profileService.findAll(), Profile::id, Profile::name));
         model.addAttribute("languages", toSelectOptions(languageService.findAll()));
-        return "translation/translation_search_form";
     }
 
     @PostMapping("/translation-table")
@@ -78,11 +78,7 @@ public class TranslationPage {
     public String newModal(Model model
     ) {
         addConstToModel(model);
-        model.addAttribute("translationKeys", toSelectOptions(translationDefinitionService.allKeys()));
-        model.addAttribute("partners", toSelectOptions(partnerService.findAll(), Partner::id, Partner::name));
-        model.addAttribute("countries", toSelectOptions(countryService.findAll(), Country::getId, Country::getLabel));
-        model.addAttribute("profiles", toSelectOptions(profileService.findAll(), Profile::id, Profile::name));
-        model.addAttribute("languages", toSelectOptions(languageService.findAll()));
+        addDataForSearchForm(model);
         return "translation/new_translation_modal";
     }
 

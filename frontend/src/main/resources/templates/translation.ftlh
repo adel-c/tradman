@@ -3,7 +3,7 @@
 
 <@l.main title="Translations">
 
-    <form hx-post="/translation" hx-history="false" hx-swap="outerHTML" hx-target="#translation_table">
+    <form hx-post="/translation" hx-history="false" hx-swap="outerHTML" hx-target="#translation_table" hx-ext='json-enc'>
 
         <@u.selectField fieldName="key" fieldLabel="Key" options=translationKeys/>
         <@u.selectField fieldName="partner" fieldLabel="Partner" options=partners/>

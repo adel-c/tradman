@@ -5,6 +5,7 @@
         <meta charset="UTF-8">
         <title>${title}</title>
         <script src="/webjars/htmx.org/1.9.4/dist/htmx.js"></script>
+        <script src="/webjars/htmx.org/1.9.4/dist/ext/json-enc.js"></script>
         <link rel="stylesheet" href="/webjars/picocss__pico/1.5.10/css/pico.css"/>
 
     </head>

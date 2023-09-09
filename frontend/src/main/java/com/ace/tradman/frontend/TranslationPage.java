@@ -47,8 +47,10 @@ public class TranslationPage {
     }
 
     @GetMapping("/translation-search-form")
-    public String translationSearchForm(Model model
+    public String translationSearchForm(Model model,
+                                        HttpServletResponse response
     ) {
+        response.addHeader("HX-Trigger-After-Settle", "RELOAD_TRANSLATION_TABLE");
         model.addAttribute("translationKeys", toSelectOptions(translationDefinitionService.allKeys()));
         model.addAttribute("partners", toSelectOptions(partnerService.findAll(), Partner::id, Partner::name));
         model.addAttribute("countries", toSelectOptions(countryService.findAll(), Country::getId, Country::getLabel));
@@ -91,10 +93,10 @@ public class TranslationPage {
                      HttpServletResponse response,
                      @ModelAttribute Translation translation
     ) {
-        Translation translation1 = translationService.upsertTranslation(translation);
+        translationService.upsertTranslation(translation);
         //model.addAttribute("translations", translationService.findAll());
         // return "translation/translation_table_body";
-        response.addHeader("HX-Trigger", "RELOAD_TRANSLATION_TABLE");
+        response.addHeader("HX-Trigger-After-Settle", "RELOAD_TRANSLATION_TABLE");
     }
 
     @Value

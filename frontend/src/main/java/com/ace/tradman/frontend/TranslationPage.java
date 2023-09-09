@@ -83,6 +83,7 @@ public class TranslationPage {
         model.addAttribute("currentPage", attributeValue.getCurrentPage());
         model.addAttribute("nextPage", attributeValue.getCurrentPage() + 1);
         model.addAttribute("totalElement", attributeValue.getTotalElement());
+        model.addAttribute("pageSize", attributeValue.getPageSize());
         model.addAttribute("hasNextPage", attributeValue.isHasNextPage());
         return x;
     }

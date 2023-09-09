@@ -16,4 +16,5 @@ public class Page {
     List<Translation> translations;
     int currentPage;
     boolean hasNextPage;
+    int pageSize;
 }

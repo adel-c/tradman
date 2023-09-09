@@ -34,7 +34,8 @@ public class TranslationService {
 
         pageBuilder.currentPage(page)
                 .translations(translations1)
-
+                .pageSize(pageSize)
+                .totalElement(translations.size())
                 .hasNextPage(endElement < translations.size());
 
         return pageBuilder.build();

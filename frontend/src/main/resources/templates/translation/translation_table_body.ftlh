@@ -1,3 +1,4 @@
+<div>Total elements: ${totalElement} / page size: ${pageSize}</div>
 <table>
     <thead>
     <tr>

@@ -7,10 +7,7 @@ import com.ace.tradman.partner.Partner;
 import com.ace.tradman.partner.PartnerService;
 import com.ace.tradman.profile.Profile;
 import com.ace.tradman.profile.ProfileService;
-import com.ace.tradman.translation.SearchTranslationQuery;
-import com.ace.tradman.translation.Translation;
-import com.ace.tradman.translation.TranslationDefinitionService;
-import com.ace.tradman.translation.TranslationService;
+import com.ace.tradman.translation.*;
 import lombok.AllArgsConstructor;
 import lombok.Value;
 import org.springframework.stereotype.Controller;
@@ -62,14 +59,31 @@ public class TranslationPage {
         model.addAttribute("languages", toSelectOptions(languageService.findAll()));
     }
 
-    @PostMapping("/translation-table")
+    @PostMapping("/translation-table/{page}")
     public String translation_table(Model model,
-                                    @ModelAttribute SearchTranslationQuery searchTranslationQuery
+                                    @ModelAttribute SearchTranslationQuery searchTranslationQuery,
+                                    @PathVariable("page") int page
     ) throws InterruptedException {
+        return showTable(model, page, searchTranslationQuery, "translation/translation_table_body");
+    }
+    @PostMapping("/translation-table/rows/{page}")
+    public String translation_table2(Model model,
+                                    @ModelAttribute SearchTranslationQuery searchTranslationQuery,
+                                    @PathVariable("page") int page
+    ) throws InterruptedException {
+        return showTable(model, page, searchTranslationQuery, "translation/translation_table_rows");
+    }
+
+    private String showTable(Model model, int page, SearchTranslationQuery searchTranslationQuery, String x) {
         addConstToModel(model);
         //   Thread.sleep(3000);
-        model.addAttribute("translations", translationService.filterBy(searchTranslationQuery));
-        return "translation/translation_table_body";
+        Page attributeValue = translationService.filterBy(page, searchTranslationQuery);
+        model.addAttribute("translations", attributeValue.getTranslations());
+        model.addAttribute("currentPage", attributeValue.getCurrentPage());
+        model.addAttribute("nextPage", attributeValue.getCurrentPage() + 1);
+        model.addAttribute("totalElement", attributeValue.getTotalElement());
+        model.addAttribute("hasNextPage", attributeValue.isHasNextPage());
+        return x;
     }
 
     @GetMapping("/new")

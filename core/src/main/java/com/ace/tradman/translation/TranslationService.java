@@ -17,24 +17,40 @@ public class TranslationService {
         return translationRepository.listAll();
     }
 
-    public Optional<Translation> searchFor(String partner,String country,String profile,String lang,String key) {
-        return translationRepository.listAll().stream().filter(t->
-                        t.getPartner().equals(partner) &&
+    public Page filterBy(int page, SearchTranslationQuery searchTranslationQuery) {
+        List<Translation> list = findAll();
+        if (searchTranslationQuery != null) {
+            list = list.stream().filter(t -> matchTranslation(t, searchTranslationQuery)).toList();
+        }
+        return buildPageFrom(page, list);
+    }
+
+    Page buildPageFrom(int page, List<Translation> translations) {
+        int pageSize = 5;
+        Page.PageBuilder pageBuilder = Page.builder();
+        int startElement = Integer.max(page * pageSize, 0);
+        int endElement = Integer.min((page + 1) * pageSize, translations.size());
+        List<Translation> translations1 = translations.subList(startElement, endElement);
+
+        pageBuilder.currentPage(page)
+                .translations(translations1)
+
+                .hasNextPage(endElement < translations.size());
+
+        return pageBuilder.build();
+    }
+
+    public Optional<Translation> searchFor(String partner, String country, String profile, String lang, String key) {
+        return translationRepository.listAll().stream().filter(t ->
+                t.getPartner().equals(partner) &&
                         t.getCountry().equals(country) &&
                         t.getProfile().equals(profile) &&
                         t.getLang().equals(lang) &&
                         t.getKey().equals(key)
 
-                ).findFirst();
+        ).findFirst();
     }
 
-    public List<Translation> filterBy(SearchTranslationQuery searchTranslationQuery) {
-        if (searchTranslationQuery == null) {
-            return findAll();
-        }
-
-        return findAll().stream().filter(t -> matchTranslation(t, searchTranslationQuery)).toList();
-    }
 
     private boolean matchTranslation(Translation t, SearchTranslationQuery q) {
         return equalOrNull(t.getPartner(), q.getPartners()) &&

@@ -1,5 +1,3 @@
-<#import "./translation_utils.ftlh" as tu>
-
 <table>
     <thead>
     <tr>
@@ -14,9 +12,7 @@
     </thead>
 
     <tbody>
-    <#list translations as translation>
-        <@tu.translationRow translation=translation/>
-    </#list>
+    <#include "./translation_table_rows.ftlh"/>
 
 
     </tbody>

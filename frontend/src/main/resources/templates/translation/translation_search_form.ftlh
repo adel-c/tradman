@@ -21,11 +21,15 @@
     <label for="key">key</label>
     <input id="key" type="text" name="key"/>
 
+<div class="grid">
     <button onclick="downloadExportFor(this,'/api/download-file')"
     >Export
     </button>
 
     <button <#--_="on click trigger RELOAD_TRANSLATION_TABLE" -->
+
             onclick="htmx.trigger('body','${trigger_reload_translation_table}')">Search
     </button>
+</div>
+
 </form>

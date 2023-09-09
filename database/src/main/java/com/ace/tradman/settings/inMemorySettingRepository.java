@@ -39,9 +39,9 @@ public class inMemorySettingRepository implements TranslationRepository {
 
     private Translation trad(String partner, String country, String profile, String key, String lang, String value) {
         return Translation.builder()
-                .partnerId(partner)
-                .countryId(country)
-                .profileId(profile)
+                .partner(partner)
+                .country(country)
+                .profile(profile)
                 .key(key)
                 .lang(lang)
                 .value(value)
@@ -58,9 +58,9 @@ public class inMemorySettingRepository implements TranslationRepository {
     public Translation upsertTranslation(Translation setting) {
         Optional<Translation> exists = settings.stream().filter(s ->
                 s.getKey().equals(setting.getKey()) &&
-                        s.getCountryId().equals(setting.getCountryId()) &&
-                        s.getPartnerId().equals(setting.getPartnerId()) &&
-                        s.getProfileId().equals(setting.getProfileId())
+                        s.getCountry().equals(setting.getCountry()) &&
+                        s.getPartner().equals(setting.getPartner()) &&
+                        s.getProfile().equals(setting.getProfile())
         ).findFirst();
         if (exists.isPresent()) {
             Translation oldValue = exists.get();

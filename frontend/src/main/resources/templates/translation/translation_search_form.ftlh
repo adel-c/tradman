@@ -5,7 +5,7 @@
 
     <div class="grid">
         <div>
-            <@u.selectField fieldName="partners" fieldLabel="Partner" options=partners multiple=true/>
+            <@u.selectField fieldName="partners" fieldLabel="Partner" options=partners multiple=true />
         </div>
         <div>
             <@u.selectField fieldName="countries" fieldLabel="Country" options=countries multiple=true/>

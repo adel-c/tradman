@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -14,6 +15,17 @@ public class TranslationService {
 
     public List<Translation> findAll() {
         return translationRepository.listAll();
+    }
+
+    public Optional<Translation> searchFor(String partner,String country,String profile,String lang,String key) {
+        return translationRepository.listAll().stream().filter(t->
+                        t.getPartner().equals(partner) &&
+                        t.getCountry().equals(country) &&
+                        t.getProfile().equals(profile) &&
+                        t.getLang().equals(lang) &&
+                        t.getKey().equals(key)
+
+                ).findFirst();
     }
 
     public List<Translation> filterBy(SearchTranslationQuery searchTranslationQuery) {

@@ -15,13 +15,11 @@ import lombok.AllArgsConstructor;
 import lombok.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Function;
 
 import static com.ace.tradman.frontend.ModelUtils.addConstToModel;
@@ -82,7 +80,20 @@ public class TranslationPage {
         return "translation/new_translation_modal";
     }
 
-
+    @GetMapping("/update/{partner}/{country}/{profile}/{language}/{key}")
+    public String updateModal(Model model,
+                              @PathVariable("partner")String partner,
+                              @PathVariable("country")String country,
+                              @PathVariable("profile")String profile,
+                              @PathVariable("language")String language,
+                              @PathVariable("key")String key
+    ) {
+        addConstToModel(model);
+        addDataForSearchForm(model);
+        Optional<Translation> translation = translationService.searchFor(partner, country, profile, language, key);
+        System.out.println(translation.isPresent());
+        return "translation/new_translation_modal";
+    }
     public <T> List<SelectOption> toSelectOptions(List<T> values, Function<T, String> valueGetter, Function<T, String> labelGetter) {
         return values.stream().map(v -> new SelectOption(valueGetter.apply(v), labelGetter.apply(v))).toList();
     }

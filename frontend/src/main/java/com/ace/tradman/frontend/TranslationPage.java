@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
-import java.util.Map;
 import java.util.function.Function;
 
 @Controller
@@ -59,7 +58,7 @@ public class TranslationPage {
         model.addAttribute("countries", toSelectOptions(countryService.findAll(), Country::getId, Country::getLabel));
         model.addAttribute("profiles", toSelectOptions(profileService.findAll(), Profile::id, Profile::name));
         model.addAttribute("languages", toSelectOptions(languageService.findAll()));
-        return "translation/newTranslationModal";
+        return "translation/new_translation_modal";
     }
 
 

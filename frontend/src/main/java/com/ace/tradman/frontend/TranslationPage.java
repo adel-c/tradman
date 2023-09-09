@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -32,15 +33,21 @@ public class TranslationPage {
     private final LanguageService languageService;
 
     @GetMapping()
-    public String main(Model model, @RequestParam Map<String, String> allRequestParams
+    public String main(Model model
     ) {
-        model.addAttribute("translations", translationService.findAll());
         model.addAttribute("translationKeys", toSelectOptions(translationDefinitionService.allKeys()));
         model.addAttribute("partners", toSelectOptions(partnerService.findAll(), Partner::id, Partner::name));
         model.addAttribute("countries", toSelectOptions(countryService.findAll(), Country::getId, Country::getLabel));
         model.addAttribute("profiles", toSelectOptions(profileService.findAll(), Profile::id, Profile::name));
         model.addAttribute("languages", toSelectOptions(languageService.findAll()));
         return "translation";
+    }
+
+    @GetMapping("/translation-table")
+    public String translation_table(Model model
+    ) {
+        model.addAttribute("translations", translationService.findAll());
+        return "translation/translation_table_body";
     }
 
     @GetMapping("/new")
@@ -64,12 +71,14 @@ public class TranslationPage {
     }
 
     @PostMapping()
-    public String post(Model model,
+    public void post(Model model,
+                       HttpServletResponse response,
                        @ModelAttribute Translation translation
     ) {
         Translation translation1 = translationService.upsertTranslation(translation);
-        model.addAttribute("translations", translationService.findAll());
-        return "translation/translation_table_body";
+        //model.addAttribute("translations", translationService.findAll());
+       // return "translation/translation_table_body";
+        response.addHeader("HX-Trigger","RELOAD_TRANSLATION_TABLE");
     }
 
     @Value

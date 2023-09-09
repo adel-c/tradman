@@ -3,7 +3,7 @@
     <div class="modal-underlay" _="on click trigger closeModal"></div>
     <div class="modal-content">
         <h1>New Translation</h1>
-        <form hx-post="/translation" hx-history="false" hx-swap="innerHTML" hx-target="#translation_table_rows" _="on htmx:afterRequest trigger closeModal">
+        <form hx-post="/translation" hx-history="false" _="on htmx:afterRequest trigger closeModal">
 
             <@u.selectField fieldName="key" fieldLabel="Key" options=translationKeys/>
             <@u.selectField fieldName="partner" fieldLabel="Partner" options=partners/>

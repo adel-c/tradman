@@ -38,11 +38,9 @@
 
         </tr>
         </thead>
-        <tbody  id="translation_table_rows">
+        <tbody  id="translation_table_rows" hx-trigger="RELOAD_TRANSLATION_TABLE from:body, load" hx-get="translation/translation-table">
 
-        <#list translations as translation>
-            <@tu.translationRow translation=translation/>
-        </#list>
+
         </tbody>
 
     </table>

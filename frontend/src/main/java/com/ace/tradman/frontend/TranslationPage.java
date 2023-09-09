@@ -58,8 +58,8 @@ public class TranslationPage {
 
 
         Translation translation1 = translationService.upsertTranslation(translation);
-        model.addAttribute("translation", translation1);
-        return "./translation/translation_row";
+        model.addAttribute("translations", translationService.findAll());
+        return "./translation/translation_table_body";
     }
 
     @Value

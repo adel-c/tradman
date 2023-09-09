@@ -4,7 +4,7 @@
 
 <@l.main title="Translations">
 
-    <form hx-post="/translation" hx-history="false" hx-swap="beforebegin" hx-target="#translation_table_rows">
+    <form hx-post="/translation" hx-history="false" hx-swap="innerHTML" hx-target="#translation_table_rows">
 
         <@u.selectField fieldName="key" fieldLabel="Key" options=translationKeys/>
         <@u.selectField fieldName="partner" fieldLabel="Partner" options=partners/>

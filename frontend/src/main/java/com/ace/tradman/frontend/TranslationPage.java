@@ -42,6 +42,17 @@ public class TranslationPage {
         return "translation";
     }
 
+    @GetMapping("/translation-search-form")
+    public String translationSearchForm(Model model
+    ) {
+        model.addAttribute("translationKeys", toSelectOptions(translationDefinitionService.allKeys()));
+        model.addAttribute("partners", toSelectOptions(partnerService.findAll(), Partner::id, Partner::name));
+        model.addAttribute("countries", toSelectOptions(countryService.findAll(), Country::getId, Country::getLabel));
+        model.addAttribute("profiles", toSelectOptions(profileService.findAll(), Profile::id, Profile::name));
+        model.addAttribute("languages", toSelectOptions(languageService.findAll()));
+        return "translation/translation_search_form";
+    }
+
     @GetMapping("/translation-table")
     public String translation_table(Model model
     ) throws InterruptedException {

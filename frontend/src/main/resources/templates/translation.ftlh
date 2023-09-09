@@ -11,19 +11,12 @@
     <button hx-get="/translation/new" hx-trigger="load,click" hx-target="body" hx-swap="beforeend">Add Translation</button>
 
 
-    <form hx-post="/translation" hx-history="false" hx-swap="innerHTML" hx-target="#translation_table_rows">
 
-        <@u.selectField fieldName="key" fieldLabel="Key" options=translationKeys/>
-        <@u.selectField fieldName="partner" fieldLabel="Partner" options=partners/>
-        <@u.selectField fieldName="country" fieldLabel="Country" options=countries/>
-        <@u.selectField fieldName="profile" fieldLabel="Profile" options=profiles/>
-        <@u.selectField fieldName="lang" fieldLabel="Language" options=languages/>
+    <div hx-indicator="#translation_loading_indicator"
+         hx-trigger="load"
+         hx-get="translation/translation-search-form">
 
-        <label for="value">value</label>
-        <input id="value" type="text" name="value"/>
-
-        <button>submit</button>
-    </form>
+    </div>
     <div hx-indicator="#translation_loading_indicator"
          hx-trigger="RELOAD_TRANSLATION_TABLE from:body, load"
          hx-get="translation/translation-table">

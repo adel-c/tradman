@@ -24,6 +24,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.function.Function;
 
+import static com.ace.tradman.frontend.ModelUtils.addConstToModel;
+import static com.ace.tradman.frontend.TriggersConst.*;
+
 @Controller
 @RequestMapping("/translation")
 @AllArgsConstructor
@@ -38,6 +41,7 @@ public class TranslationPage {
     @GetMapping()
     public String main(Model model
     ) {
+        addConstToModel(model);
         model.addAttribute("translationKeys", toSelectOptions(translationDefinitionService.allKeys()));
         model.addAttribute("partners", toSelectOptions(partnerService.findAll(), Partner::id, Partner::name));
         model.addAttribute("countries", toSelectOptions(countryService.findAll(), Country::getId, Country::getLabel));
@@ -50,7 +54,8 @@ public class TranslationPage {
     public String translationSearchForm(Model model,
                                         HttpServletResponse response
     ) {
-        response.addHeader("HX-Trigger-After-Settle", "RELOAD_TRANSLATION_TABLE");
+        addConstToModel(model);
+        addTriggerHeader(response, RELOAD_TRANSLATION_TABLE);
         model.addAttribute("translationKeys", toSelectOptions(translationDefinitionService.allKeys()));
         model.addAttribute("partners", toSelectOptions(partnerService.findAll(), Partner::id, Partner::name));
         model.addAttribute("countries", toSelectOptions(countryService.findAll(), Country::getId, Country::getLabel));
@@ -63,6 +68,7 @@ public class TranslationPage {
     public String translation_table(Model model,
                                     @ModelAttribute SearchTranslationQuery searchTranslationQuery
     ) throws InterruptedException {
+        addConstToModel(model);
         //   Thread.sleep(3000);
         model.addAttribute("translations", translationService.filterBy(searchTranslationQuery));
         return "translation/translation_table_body";
@@ -71,6 +77,7 @@ public class TranslationPage {
     @GetMapping("/new")
     public String newModal(Model model
     ) {
+        addConstToModel(model);
         model.addAttribute("translationKeys", toSelectOptions(translationDefinitionService.allKeys()));
         model.addAttribute("partners", toSelectOptions(partnerService.findAll(), Partner::id, Partner::name));
         model.addAttribute("countries", toSelectOptions(countryService.findAll(), Country::getId, Country::getLabel));
@@ -96,7 +103,11 @@ public class TranslationPage {
         translationService.upsertTranslation(translation);
         //model.addAttribute("translations", translationService.findAll());
         // return "translation/translation_table_body";
-        response.addHeader("HX-Trigger-After-Settle", "RELOAD_TRANSLATION_TABLE");
+        addTriggerHeader(response, RELOAD_TRANSLATION_TABLE);
+    }
+
+    private static void addTriggerHeader(HttpServletResponse response, String reloadTranslationTable) {
+        response.addHeader("HX-Trigger-After-Settle", reloadTranslationTable);
     }
 
     @Value

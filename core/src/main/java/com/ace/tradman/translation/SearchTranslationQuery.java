@@ -1,10 +1,13 @@
 package com.ace.tradman.translation;
 
-import lombok.Value;
+import lombok.*;
 
 import java.util.List;
 
-@Value
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class SearchTranslationQuery {
 
     List<String> partners;

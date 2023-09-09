@@ -3,7 +3,9 @@ package com.ace.tradman.frontend;
 import com.ace.tradman.county.Country;
 import com.ace.tradman.county.CountryService;
 import com.ace.tradman.language.LanguageService;
+import com.ace.tradman.partner.Partner;
 import com.ace.tradman.partner.PartnerService;
+import com.ace.tradman.profile.Profile;
 import com.ace.tradman.profile.ProfileService;
 import com.ace.tradman.translation.TranslationDefinition;
 import com.ace.tradman.translation.TranslationDefinitionService;
@@ -19,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
+import java.util.zip.CheckedOutputStream;
 
 @Controller
 @RequestMapping("/translation")
@@ -35,26 +39,21 @@ public class TranslationPage {
     public String main(Model model, @RequestParam Map<String, String> allRequestParams
     ) {
         model.addAttribute("translations", translationService.findAll());
-        model.addAttribute("translationKeys", translationDefinitionService.allKeys());
-        model.addAttribute("partners", partnerService.findAll());
-        model.addAttribute("countries", toSelectOptions(countryService.findAll()));
-        model.addAttribute("profiles", profileService.findAll());
-        model.addAttribute("languages", languageService.findAll());
+        model.addAttribute("translationKeys",  toSelectOptions(translationDefinitionService.allKeys()));
+        model.addAttribute("partners",  toSelectOptions(partnerService.findAll(), Partner::id,Partner::name));
+        model.addAttribute("countries", toSelectOptions(countryService.findAll(),Country::getId,Country::getLabel));
+        model.addAttribute("profiles",  toSelectOptions(profileService.findAll(), Profile::id,Profile::name));
+        model.addAttribute("languages",  toSelectOptions(languageService.findAll()));
         return "translation";
     }
 
-    public List<SelectOption> toSelectOptions(List<Country> countries) {
-        return countries.stream().map(c -> {
-            return new SelectOption(c.getId(), c.getLabel());
-        }).toList();
+    public <T> List<SelectOption> toSelectOptions(List<T> values,Function<T,String> valueGetter,Function<T,String> labelGetter) {
+        return values.stream().map(v -> new SelectOption(valueGetter.apply(v), labelGetter.apply(v))).toList();
     }
 
-    @Value
-    public static class SelectOption {
-        String value;
-        String label;
+    public List<SelectOption> toSelectOptions(List<String> values) {
+        return toSelectOptions(values,Function.identity(),Function.identity());
     }
-
     @PostMapping()
     public String post(Model model, @RequestParam Map<String, String> allRequestParams
     ) {
@@ -73,4 +72,11 @@ public class TranslationPage {
         model.addAttribute("translationDefinitions", translationDefinitionService.findAll());
         return "./translation_definition/translation_definition_table";
     }
+
+    @Value
+    public static class SelectOption {
+        String value;
+        String label;
+    }
+
 }

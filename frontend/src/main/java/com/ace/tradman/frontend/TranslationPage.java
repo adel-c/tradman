@@ -55,7 +55,7 @@ public class TranslationPage {
 
     @PostMapping()
     public String post(Model model,
-                       @RequestBody Translation translation
+                       @ModelAttribute Translation translation
     ) {
 
 

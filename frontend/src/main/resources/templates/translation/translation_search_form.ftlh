@@ -2,7 +2,7 @@
 
 <form id="translation_search_form" hx-history="false" onsubmit="return false;"
       hx-trigger="translation-clear-search-form from:body"
-      hx-get="translation/translation-search-form">
+      hx-get="translation/translation-search-form" hx-swap="outerHTML">
 
 
     <div class="grid">
@@ -23,18 +23,18 @@
     <label for="key">key</label>
     <input id="key" type="text" name="key"/>
 
-<div class="grid">
-    <button onclick="htmx.trigger('body','translation-clear-search-form')"
-    >clear
-    </button>
-    <button onclick="downloadExportFor(this,'/api/download-file')"
-    >Export
-    </button>
+    <div class="grid">
+        <button onclick="htmx.trigger('body','translation-clear-search-form')"
+        >clear
+        </button>
+        <button onclick="downloadExportFor(this,'/api/download-file')"
+        >Export
+        </button>
 
-    <button <#--_="on click trigger RELOAD_TRANSLATION_TABLE" -->
+        <button <#--_="on click trigger RELOAD_TRANSLATION_TABLE" -->
 
-            onclick="htmx.trigger('body','${trigger_reload_translation_table}')">Search
-    </button>
-</div>
+                onclick="htmx.trigger('body','${trigger_reload_translation_table}')">Search
+        </button>
+    </div>
 
 </form>

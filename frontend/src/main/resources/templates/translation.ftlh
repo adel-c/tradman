@@ -20,7 +20,7 @@
     </div>
     <div hx-indicator="#translation_loading_indicator"
          hx-include="#translation_search_form"
-         hx-trigger="RELOAD_TRANSLATION_TABLE from:body"
+         hx-trigger="${trigger_reload_translation_table} from:body"
          hx-post="translation/translation-table">
 
     </div>

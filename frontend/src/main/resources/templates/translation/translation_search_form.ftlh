@@ -21,6 +21,6 @@
     <label for="key">key</label>
     <input id="key" type="text" name="key"/>
 
-    <button <#--_="on click trigger RELOAD_TRANSLATION_TABLE" --> onclick="htmx.trigger('body','RELOAD_TRANSLATION_TABLE')">Search</button>
+    <button <#--_="on click trigger RELOAD_TRANSLATION_TABLE" --> onclick="htmx.trigger('body','${trigger_reload_translation_table}')">Search</button>
 </form>
 

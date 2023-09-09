@@ -1,7 +1,12 @@
 package com.ace.tradman.frontend;
 
+import com.ace.tradman.county.CountryService;
+import com.ace.tradman.language.LanguageService;
+import com.ace.tradman.partner.PartnerService;
+import com.ace.tradman.profile.ProfileService;
 import com.ace.tradman.translation.TranslationDefinition;
 import com.ace.tradman.translation.TranslationDefinitionService;
+import com.ace.tradman.translation.TranslationService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,11 +22,21 @@ import java.util.Map;
 @AllArgsConstructor
 public class TranslationPage {
     private final TranslationDefinitionService translationDefinitionService;
+    private final TranslationService translationService;
+    private final CountryService countryService;
+    private final ProfileService profileService;
+    private final PartnerService partnerService;
+    private final LanguageService languageService;
+
     @GetMapping()
     public String main(Model model, @RequestParam Map<String, String> allRequestParams
     ) {
-        model.addAttribute("translationDefinitions", translationDefinitionService.listAllDefinitions());
-        return "translationDefinition";
+        model.addAttribute("translations", translationService.findAll());
+        model.addAttribute("partners", partnerService.findAll());
+        model.addAttribute("countries", countryService.findAll());
+        model.addAttribute("profiles", profileService.findAll());
+        model.addAttribute("languages", languageService.findAll());
+        return "translation";
     }
 
 
@@ -31,7 +46,7 @@ public class TranslationPage {
         String id = allRequestParams.get("id");
         String key = allRequestParams.get("key");
         String definition = allRequestParams.get("definition");
-        String expandString = allRequestParams.getOrDefault("expand","off");
+        String expandString = allRequestParams.getOrDefault("expand", "off");
 
         TranslationDefinition build = TranslationDefinition.builder()
                 .id(id)

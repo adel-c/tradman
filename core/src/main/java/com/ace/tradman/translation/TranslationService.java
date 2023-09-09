@@ -11,7 +11,7 @@ public class TranslationService {
 
     private TranslationRepository translationRepository;
 
-    public List<Translation> listAll() {
+    public List<Translation> findAll() {
         return translationRepository.listAll();
     }
 

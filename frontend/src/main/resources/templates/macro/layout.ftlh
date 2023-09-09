@@ -14,7 +14,7 @@
         <a href="/">Go To Page 1</a>
 
         <a href="/translation-definition">setting definition</a>
-        <a href="/setting">settings</a>
+        <a href="/translation">settings</a>
     </div>
 
     <main id="mainContent" class="container">

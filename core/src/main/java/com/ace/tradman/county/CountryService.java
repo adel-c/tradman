@@ -8,7 +8,7 @@ import java.util.List;
 
 public class CountryService {
 
-    public List<Country> findCountries() {
+    public List<Country> findAll() {
         return List.of(
                 new Country("FR", "France", "fr"),
                 new Country("UK", "UK", "en"),

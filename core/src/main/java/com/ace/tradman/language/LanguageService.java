@@ -8,7 +8,7 @@ import java.util.List;
 
 public class LanguageService {
 
-    public List<String> listLanguages() {
+    public List<String> findAll() {
         return List.of(
                 "fr",
                 "en", "es", "it"

@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 @Service
 public class ProfileService {
-    public List<Profile> findProfiles() {
+    public List<Profile> findAll() {
         return List.of(
                 new Profile("pro1", "Profile 1"),
                 new Profile("pro2", "Profile 2"),

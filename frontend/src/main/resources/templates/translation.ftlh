@@ -33,7 +33,7 @@
     </div>
 
     <div>
-        <img alt="loading translations..." id="translation_loading_indicator" class="htmx-indicator" src="/rings.svg">
+        <img style="background-color: var(--primary);border-radius: 50%" alt="loading translations..." id="translation_loading_indicator" class="htmx-indicator" src="/rings.svg"/>
     </div>
 
 </@l.main>

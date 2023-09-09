@@ -71,6 +71,7 @@ public class TranslationPage {
                                     @ModelAttribute SearchTranslationQuery searchTranslationQuery,
                                     @PathVariable("page") int page
     ) throws InterruptedException {
+        Thread.sleep(1000);
         return showTable(model, page, searchTranslationQuery, "translation/translation_table_rows");
     }
 

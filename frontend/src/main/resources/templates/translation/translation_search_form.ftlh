@@ -1,6 +1,8 @@
 <#import "../macro/utils.ftlh" as u>
 
-<form id="translation_search_form" hx-history="false" onsubmit="return false;">
+<form id="translation_search_form" hx-history="false" onsubmit="return false;"
+      hx-trigger="translation-clear-search-form from:body"
+      hx-get="translation/translation-search-form">
 
 
     <div class="grid">
@@ -22,6 +24,9 @@
     <input id="key" type="text" name="key"/>
 
 <div class="grid">
+    <button onclick="htmx.trigger('body','translation-clear-search-form')"
+    >clear
+    </button>
     <button onclick="downloadExportFor(this,'/api/download-file')"
     >Export
     </button>

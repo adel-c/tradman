@@ -43,6 +43,18 @@ public class TranslationPage {
         return "translation";
     }
 
+    @GetMapping("/new")
+    public String newModal(Model model
+    ) {
+        model.addAttribute("translationKeys", toSelectOptions(translationDefinitionService.allKeys()));
+        model.addAttribute("partners", toSelectOptions(partnerService.findAll(), Partner::id, Partner::name));
+        model.addAttribute("countries", toSelectOptions(countryService.findAll(), Country::getId, Country::getLabel));
+        model.addAttribute("profiles", toSelectOptions(profileService.findAll(), Profile::id, Profile::name));
+        model.addAttribute("languages", toSelectOptions(languageService.findAll()));
+        return "translation/newTranslationModal";
+    }
+
+
     public <T> List<SelectOption> toSelectOptions(List<T> values, Function<T, String> valueGetter, Function<T, String> labelGetter) {
         return values.stream().map(v -> new SelectOption(valueGetter.apply(v), labelGetter.apply(v))).toList();
     }
@@ -55,11 +67,9 @@ public class TranslationPage {
     public String post(Model model,
                        @ModelAttribute Translation translation
     ) {
-
-
         Translation translation1 = translationService.upsertTranslation(translation);
         model.addAttribute("translations", translationService.findAll());
-        return "./translation/translation_table_body";
+        return "translation/translation_table_body";
     }
 
     @Value

@@ -8,6 +8,9 @@
     </button>
 
 
+    <button hx-get="/translation/new" hx-target="body" hx-swap="beforeend">Add Translation</button>
+
+
     <form hx-post="/translation" hx-history="false" hx-swap="innerHTML" hx-target="#translation_table_rows">
 
         <@u.selectField fieldName="key" fieldLabel="Key" options=translationKeys/>

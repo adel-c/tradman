@@ -24,9 +24,11 @@
 
         <button>submit</button>
     </form>
-<div hx-indicator="#translation_loading_indicator" id="translation_table_rows" hx-trigger="RELOAD_TRANSLATION_TABLE from:body, load" hx-get="translation/translation-table">
+    <div hx-indicator="#translation_loading_indicator"
+         hx-trigger="RELOAD_TRANSLATION_TABLE from:body, load"
+         hx-get="translation/translation-table">
 
-</div>
+    </div>
 
     <div>
         <img alt="loading translations..." id="translation_loading_indicator" class="htmx-indicator" src="/rings.svg">

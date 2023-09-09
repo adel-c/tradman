@@ -14,34 +14,37 @@
     </head>
     <body>
     <script type="text/javascript">
-        console.log(htmx);
-        htmx.defineExtension('my-ext', {
-            onEvent : function(name, evt) {
-                if("htmx:trigger" === name){
-
-                    console.log("Fired event: " + name, evt);
-                    let target = evt.target;
-                    let includeForm=target.getAttribute("hx-include");
-                    let dlBaseUrl=target.getAttribute("dl-base");
-                    let host = location.href;
-                    let values = htmx.values(htmx.find(includeForm));
-                    console.log(target)
-                    console.log(values)
-                    const myUrlWithParams = new URL(dlBaseUrl,host);
-                    for (const [key, value] of Object.entries(values)) {
-                        console.log(key+":"+value);
-                        myUrlWithParams.searchParams.append(key, value);
-                    }
-
-
-
-                    console.log(myUrlWithParams.href);
-                    target.href=myUrlWithParams.href;
-                    target.click()
+        function downloadExportFor(element,baseUrl,targetForm) {
+            function computeUrlFrom(relativePath,parameters) {
+                const host = location.href;
+                const url = new URL(relativePath, host);
+                for (const [key, value] of Object.entries(parameters)) {
+                    url.searchParams.append(key, value);
                 }
-
+                return url.href;
             }
-        })
+            let form;
+            if(targetForm){
+                form=htmx.find(targetForm);
+            }else{
+                 form=htmx.closest(element,"form");
+            }
+
+            let values = htmx.values(form);
+
+
+
+            const url = computeUrlFrom(baseUrl,values);
+            let link = document.createElement("a");
+            link.hidden=true
+            link.download=true
+            link.href=url
+
+            element.parentElement.appendChild(link);
+            link.click()
+            link.remove()
+        }
+
     </script>
     <div class="grid">
         <a href="/">Go To Page 1</a>

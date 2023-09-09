@@ -1,9 +1,10 @@
 <#import "./macro/layout.ftlh" as l>
 <#import "./macro/utils.ftlh" as u>
+<#import "./translation/translation_utils.ftlh" as tu>
 
 <@l.main title="Translations">
 
-    <form hx-post="/translation" hx-history="false" hx-swap="outerHTML" hx-target="#translation_table" >
+    <form hx-post="/translation" hx-history="false" hx-swap="beforebegin" hx-target="#translation_table_rows">
 
         <@u.selectField fieldName="key" fieldLabel="Key" options=translationKeys/>
         <@u.selectField fieldName="partner" fieldLabel="Partner" options=partners/>
@@ -18,7 +19,26 @@
     </form>
 
 
-    <#include "./translation_definition/translation_table.ftlh"/>
+    <table>
+        <thead>
+        <tr>
+            <th>Partner</th>
+            <th>Country</th>
+            <th>Profile</th>
+            <th>language</th>
+            <th>key</th>
+            <th>value</th>
+
+        </tr>
+        </thead>
+        <tbody  id="translation_table_rows">
+
+        <#list translations as translation>
+            <@tu.translationRow translation=translation/>
+        </#list>
+        </tbody>
+
+    </table>
 
 
 </@l.main>

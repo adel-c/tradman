@@ -8,7 +8,6 @@ import com.ace.tradman.partner.PartnerService;
 import com.ace.tradman.profile.Profile;
 import com.ace.tradman.profile.ProfileService;
 import com.ace.tradman.translation.Translation;
-import com.ace.tradman.translation.TranslationDefinition;
 import com.ace.tradman.translation.TranslationDefinitionService;
 import com.ace.tradman.translation.TranslationService;
 import lombok.AllArgsConstructor;
@@ -20,7 +19,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
-import java.util.zip.CheckedOutputStream;
 
 @Controller
 @RequestMapping("/translation")
@@ -60,8 +58,8 @@ public class TranslationPage {
 
 
         Translation translation1 = translationService.upsertTranslation(translation);
-        model.addAttribute("translations", translationService.findAll());
-        return "./translation_definition/translation_table";
+        model.addAttribute("translation", translation1);
+        return "./translation/translation_row";
     }
 
     @Value

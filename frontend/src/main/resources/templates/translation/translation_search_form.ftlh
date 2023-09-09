@@ -1,5 +1,5 @@
 <#import "../macro/utils.ftlh" as u>
-<form hx-post="/translation" hx-history="false" hx-swap="innerHTML" hx-target="#translation_table_rows">
+<form id="translation_search_form" hx-post="/translation" hx-history="false" hx-swap="innerHTML" hx-target="#translation_table_rows">
 
     <@u.selectField fieldName="key" fieldLabel="Key" options=translationKeys/>
     <@u.selectField fieldName="partner" fieldLabel="Partner" options=partners/>

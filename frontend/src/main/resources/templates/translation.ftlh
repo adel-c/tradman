@@ -18,8 +18,9 @@
 
     </div>
     <div hx-indicator="#translation_loading_indicator"
+         hx-include="#translation_search_form"
          hx-trigger="RELOAD_TRANSLATION_TABLE from:body, load"
-         hx-get="translation/translation-table">
+         hx-post="translation/translation-table">
 
     </div>
 

@@ -14,7 +14,10 @@ import lombok.AllArgsConstructor;
 import lombok.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
@@ -53,10 +56,11 @@ public class TranslationPage {
         return "translation/translation_search_form";
     }
 
-    @GetMapping("/translation-table")
-    public String translation_table(Model model
+    @PostMapping("/translation-table")
+    public String translation_table(Model model,
+                                    @ModelAttribute SearchTranslationQuery searchTranslationQuery
     ) throws InterruptedException {
-     //   Thread.sleep(3000);
+        //   Thread.sleep(3000);
         model.addAttribute("translations", translationService.findAll());
         return "translation/translation_table_body";
     }
@@ -83,13 +87,13 @@ public class TranslationPage {
 
     @PostMapping()
     public void post(Model model,
-                       HttpServletResponse response,
-                       @ModelAttribute Translation translation
+                     HttpServletResponse response,
+                     @ModelAttribute Translation translation
     ) {
         Translation translation1 = translationService.upsertTranslation(translation);
         //model.addAttribute("translations", translationService.findAll());
-       // return "translation/translation_table_body";
-        response.addHeader("HX-Trigger","RELOAD_TRANSLATION_TABLE");
+        // return "translation/translation_table_body";
+        response.addHeader("HX-Trigger", "RELOAD_TRANSLATION_TABLE");
     }
 
     @Value
@@ -97,5 +101,17 @@ public class TranslationPage {
         String value;
         String label;
     }
+
+    @Value
+    public static class SearchTranslationQuery {
+
+        String partner;
+        String country;
+        String profile;
+        String lang;
+        String key;
+        String value;
+    }
+
 
 }

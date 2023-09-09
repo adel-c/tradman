@@ -17,7 +17,7 @@ public class TranslationDefinitionPage {
     @GetMapping()
     public String main(Model model, @RequestParam Map<String, String> allRequestParams
     ) {
-        model.addAttribute("translationDefinitions", translationDefinitionService.listAllDefinitions());
+        model.addAttribute("translationDefinitions", translationDefinitionService.findAll());
         return "translationDefinition";
     }
 
@@ -35,7 +35,7 @@ public class TranslationDefinitionPage {
                 .build();
 
         TranslationDefinition translationDefinition = translationDefinitionService.upsertSettingDefinition(build);
-        model.addAttribute("translationDefinitions", translationDefinitionService.listAllDefinitions());
+        model.addAttribute("translationDefinitions", translationDefinitionService.findAll());
         return "./translation_definition/translation_definition_table";
     }
 }

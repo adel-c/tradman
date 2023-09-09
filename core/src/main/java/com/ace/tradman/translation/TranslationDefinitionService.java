@@ -9,7 +9,7 @@ import java.util.List;
 @Service
 public class TranslationDefinitionService {
     private TranslationDefinitionRepository translationDefinitionRepository;
-    public List<TranslationDefinition> listAllDefinitions() {
+    public List<TranslationDefinition> findAll() {
         return translationDefinitionRepository.listAllDefinitions();
     }
     public TranslationDefinition upsertSettingDefinition(TranslationDefinition translationDefinition){
@@ -18,5 +18,9 @@ public class TranslationDefinitionService {
     public void deleteSettingDefinition(String translationDefinitionId) {
 
         translationDefinitionRepository.deleteTranslationDefinition(translationDefinitionId);
+    }
+
+    public List<String> allKeys() {
+        return findAll().stream().map(TranslationDefinition::getKey).toList();
     }
 }

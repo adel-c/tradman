@@ -32,6 +32,7 @@ public class TranslationPage {
     public String main(Model model, @RequestParam Map<String, String> allRequestParams
     ) {
         model.addAttribute("translations", translationService.findAll());
+        model.addAttribute("translationKeys", translationDefinitionService.allKeys());
         model.addAttribute("partners", partnerService.findAll());
         model.addAttribute("countries", countryService.findAll());
         model.addAttribute("profiles", profileService.findAll());
@@ -55,7 +56,7 @@ public class TranslationPage {
                 .build();
 
         TranslationDefinition translationDefinition = translationDefinitionService.upsertSettingDefinition(build);
-        model.addAttribute("translationDefinitions", translationDefinitionService.listAllDefinitions());
+        model.addAttribute("translationDefinitions", translationDefinitionService.findAll());
         return "./translation_definition/translation_definition_table";
     }
 }

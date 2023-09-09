@@ -14,7 +14,12 @@ public class TranslationService {
     public List<Translation> findAll() {
         return translationRepository.listAll();
     }
-
+    public List<Translation> filterBy(SearchTranslationQuery searchTranslationQuery) {
+        if(searchTranslationQuery == null){
+            return findAll();
+        }
+        return translationRepository.listAll();
+    }
     public Translation upsertTranslation(Translation translation) {
         return translationRepository.upsertTranslation(translation);
     }

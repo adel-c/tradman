@@ -7,6 +7,7 @@ import com.ace.tradman.partner.Partner;
 import com.ace.tradman.partner.PartnerService;
 import com.ace.tradman.profile.Profile;
 import com.ace.tradman.profile.ProfileService;
+import com.ace.tradman.translation.SearchTranslationQuery;
 import com.ace.tradman.translation.Translation;
 import com.ace.tradman.translation.TranslationDefinitionService;
 import com.ace.tradman.translation.TranslationService;
@@ -61,7 +62,7 @@ public class TranslationPage {
                                     @ModelAttribute SearchTranslationQuery searchTranslationQuery
     ) throws InterruptedException {
         //   Thread.sleep(3000);
-        model.addAttribute("translations", translationService.findAll());
+        model.addAttribute("translations", translationService.filterBy(searchTranslationQuery));
         return "translation/translation_table_body";
     }
 
@@ -100,17 +101,6 @@ public class TranslationPage {
     public static class SelectOption {
         String value;
         String label;
-    }
-
-    @Value
-    public static class SearchTranslationQuery {
-
-        String partner;
-        String country;
-        String profile;
-        String lang;
-        String key;
-        String value;
     }
 
 

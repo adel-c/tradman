@@ -29,15 +29,12 @@
             }else{
                  form=htmx.closest(element,"form");
             }
-
             let values = htmx.values(form);
-
-
 
             const url = computeUrlFrom(baseUrl,values);
             let link = document.createElement("a");
             link.hidden=true
-            link.download=true
+            link.download="true"
             link.href=url
 
             element.parentElement.appendChild(link);

@@ -5,16 +5,16 @@
 
     <div class="grid">
         <div>
-            <@u.selectField fieldName="partner" fieldLabel="Partner" options=partners multiple=true/>
+            <@u.selectField fieldName="partners" fieldLabel="Partner" options=partners multiple=true/>
         </div>
         <div>
-            <@u.selectField fieldName="country" fieldLabel="Country" options=countries multiple=true/>
+            <@u.selectField fieldName="countries" fieldLabel="Country" options=countries multiple=true/>
         </div>
         <div>
-            <@u.selectField fieldName="profile" fieldLabel="Profile" options=profiles multiple=true/>
+            <@u.selectField fieldName="profiles" fieldLabel="Profile" options=profiles multiple=true/>
         </div>
         <div>
-            <@u.selectField fieldName="lang" fieldLabel="Language" options=languages multiple=true/>
+            <@u.selectField fieldName="languages" fieldLabel="Language" options=languages multiple=true/>
         </div>
     </div>
 

@@ -1,6 +1,6 @@
 <#macro main title >
     <!DOCTYPE html>
-    <html lang="en">
+    <html lang="en"  data-theme="light">
     <head>
         <meta charset="UTF-8">
         <title>${title}</title>

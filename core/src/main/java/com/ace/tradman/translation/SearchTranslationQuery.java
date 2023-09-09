@@ -2,13 +2,14 @@ package com.ace.tradman.translation;
 
 import lombok.Value;
 
+import java.util.List;
+
 @Value
 public class SearchTranslationQuery {
 
-    String partner;
-    String country;
-    String profile;
-    String lang;
+    List<String> partners;
+    List<String> countries;
+    List<String> profiles;
+    List<String> languages;
     String key;
-    String value;
 }

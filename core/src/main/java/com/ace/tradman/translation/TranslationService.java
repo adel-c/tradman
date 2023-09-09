@@ -25,10 +25,10 @@ public class TranslationService {
     }
 
     private boolean matchTranslation(Translation t, SearchTranslationQuery q) {
-        return equalOrNull(t.getPartner(), q.getPartner()) &&
-                equalOrNull(t.getCountry(), q.getCountry()) &&
-                equalOrNull(t.getProfile(), q.getProfile()) &&
-                equalOrNull(t.getLang(), q.getLang()) &&
+        return equalOrNull(t.getPartner(), q.getPartners()) &&
+                equalOrNull(t.getCountry(), q.getCountries()) &&
+                equalOrNull(t.getProfile(), q.getProfiles()) &&
+                equalOrNull(t.getLang(), q.getLanguages()) &&
                 containsOrNull(t.getKey(), q.getKey());
     }
 
@@ -39,8 +39,8 @@ public class TranslationService {
         return s1.toLowerCase().contains(s2.toLowerCase());
     }
 
-    private boolean equalOrNull(String s1, String s2) {
-        return s2 == null || s2.equals(s1);
+    private boolean equalOrNull(String s1, List<String> s2) {
+        return s2 == null || s2.contains(s1);
     }
 
     public Translation upsertTranslation(Translation translation) {

@@ -4,14 +4,12 @@
 <@l.main title="Translations">
 
     <form hx-post="/translation" hx-history="false" hx-swap="outerHTML" hx-target="#translation_definition_table">
-        <label for="key">key</label>
-        <select id="key" name="key">
-            <#list translationKeys as key>
-                <option value="${key}">${key} ${key_index} ${key_has_next?string('yes', 'no')}</option>
-            </#list>
-        </select>
 
+        <@u.selectField fieldName="key" fieldLabel="Key" options=translationKeys/>
+        <@u.selectField fieldName="partner" fieldLabel="Partner" options=partners/>
         <@u.selectField fieldName="country" fieldLabel="Country" options=countries/>
+        <@u.selectField fieldName="profile" fieldLabel="Profile" options=profiles/>
+        <@u.selectField fieldName="lang" fieldLabel="Language" options=languages/>
         <button>submit</button>
     </form>
 

@@ -3,6 +3,10 @@
 <#import "./translation/translation_utils.ftlh" as tu>
 
 <@l.main title="Translations">
+    <button _="on click toggle .clicked">
+        Toggle the "clicked" class on me
+    </button>
+
 
     <form hx-post="/translation" hx-history="false" hx-swap="innerHTML" hx-target="#translation_table_rows">
 

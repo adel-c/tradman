@@ -35,9 +35,7 @@ public class TranslationPage {
 
         TranslationDefinition build = TranslationDefinition.builder()
                 .id(id)
-                .definition(definition)
                 .key(key)
-                .expand("on".equalsIgnoreCase(expandString))
 
                 .build();
 

@@ -8,6 +8,5 @@ import lombok.Data;
 public class TranslationDefinition {
     private String id;
     private String key;
-    private String definition;
-    private boolean expand;
+
 }

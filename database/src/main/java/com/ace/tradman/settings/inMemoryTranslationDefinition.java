@@ -33,8 +33,6 @@ public class inMemoryTranslationDefinition implements TranslationDefinitionRepos
     public TranslationDefinition upsertTranslationDefinition(TranslationDefinition settingDefinition) {
         Optional<TranslationDefinition> first = settingDefinitions.stream().filter(d -> d.getKey().equals(settingDefinition.getKey())).findFirst();
         if (first.isPresent()){
-            first.get().setExpand(settingDefinition.isExpand());
-            first.get().setDefinition(settingDefinition.getDefinition());
             return first.get();
         }else {
             settingDefinition.setId(UUID.randomUUID().toString());

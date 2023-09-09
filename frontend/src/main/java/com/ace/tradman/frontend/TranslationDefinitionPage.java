@@ -27,14 +27,10 @@ public class TranslationDefinitionPage {
     ) {
         String id = allRequestParams.get("id");
         String key = allRequestParams.get("key");
-        String definition = allRequestParams.get("definition");
-        String expandString = allRequestParams.getOrDefault("expand","off");
 
         TranslationDefinition build = TranslationDefinition.builder()
                 .id(id)
-                .definition(definition)
                 .key(key)
-                .expand("on".equalsIgnoreCase(expandString))
 
                 .build();
 

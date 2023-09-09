@@ -1,5 +1,6 @@
 <#import "../macro/utils.ftlh" as u>
-<form id="translation_search_form" hx-post="/translation" hx-history="false" hx-swap="innerHTML" hx-target="#translation_table_rows">
+
+<form id="translation_search_form" hx-history="false"  onsubmit="return false;">
 
 
     <div class="grid">
@@ -20,5 +21,6 @@
     <label for="key">key</label>
     <input id="key" type="text" name="key"/>
 
-    <button>submit</button>
+    <button <#--_="on click trigger RELOAD_TRANSLATION_TABLE" --> onclick="htmx.trigger('body','RELOAD_TRANSLATION_TABLE')">Search</button>
 </form>
+

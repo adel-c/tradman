@@ -1,8 +1,10 @@
 package com.ace.tradman.translation;
 
+import lombok.Builder;
 import lombok.Data;
 
 @Data
+@Builder
 public class Translation {
     private String id;
     private String countryId;

@@ -14,29 +14,38 @@ import static java.util.function.Predicate.not;
 
 @Component
 public class inMemoryTranslationDefinition implements TranslationDefinitionRepository {
-    List<TranslationDefinition> settingDefinitions = new ArrayList<>();
+    List<TranslationDefinition> translationDefinitions = new ArrayList<>();
 
     {
+        translationDefinitions.add(tradDef("f1.key1"));
+        translationDefinitions.add(tradDef("f1.key2"));
+        translationDefinitions.add(tradDef("f1.key3"));
+        translationDefinitions.add(tradDef("f2.key1"));
+        translationDefinitions.add(tradDef("f2.key2"));
+        translationDefinitions.add(tradDef("f3.key1"));
+    }
+
+    private static TranslationDefinition tradDef(String key) {
         TranslationDefinition build2 = TranslationDefinition.builder()
                 .id(UUID.randomUUID().toString())
-                .key("set1.enabled")
+                .key(key)
                 .build();
-        settingDefinitions.add(build2);
+        return build2;
     }
 
     @Override
     public List<TranslationDefinition> listAllDefinitions() {
-        return settingDefinitions;
+        return translationDefinitions;
     }
 
     @Override
     public TranslationDefinition upsertTranslationDefinition(TranslationDefinition settingDefinition) {
-        Optional<TranslationDefinition> first = settingDefinitions.stream().filter(d -> d.getKey().equals(settingDefinition.getKey())).findFirst();
+        Optional<TranslationDefinition> first = translationDefinitions.stream().filter(d -> d.getKey().equals(settingDefinition.getKey())).findFirst();
         if (first.isPresent()){
             return first.get();
         }else {
             settingDefinition.setId(UUID.randomUUID().toString());
-            settingDefinitions.add(settingDefinition);
+            translationDefinitions.add(settingDefinition);
             return settingDefinition;
         }
 
@@ -46,7 +55,7 @@ public class inMemoryTranslationDefinition implements TranslationDefinitionRepos
     @Override
     public void deleteTranslationDefinition(String settingDefinitionId) {
         Predicate<TranslationDefinition> hasExpectedId = settingDefinition -> settingDefinition.getKey().equals(settingDefinitionId);
-        settingDefinitions = settingDefinitions.stream().filter(not(hasExpectedId)).toList();
+        translationDefinitions = translationDefinitions.stream().filter(not(hasExpectedId)).toList();
     }
 
 

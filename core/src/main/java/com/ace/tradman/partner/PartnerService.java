@@ -7,9 +7,9 @@ import java.util.List;
 public class PartnerService {
     public List<Partner> findPartners(){
         return List.of(
-                new Partner("P1","le premier P"),
-                new Partner("P2","PP2"),
-                new Partner("P3","Pp3")
+                new Partner("par1","Partner1"),
+                new Partner("par2","Partner2"),
+                new Partner("par3","Partner3")
         );
     }
 }

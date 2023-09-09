@@ -13,7 +13,5 @@
 
     <tbody>
     <#include "./translation_table_rows.ftlh"/>
-
-
     </tbody>
 </table>

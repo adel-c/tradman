@@ -25,7 +25,7 @@
 
     <div class="grid">
         <button onclick="htmx.trigger('body','translation-clear-search-form')"
-        >clear
+        >Clear
         </button>
         <button onclick="downloadExportFor(this,'/api/download-file')"
         >Export

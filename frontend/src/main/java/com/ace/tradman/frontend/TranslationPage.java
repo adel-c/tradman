@@ -46,7 +46,7 @@ public class TranslationPage {
     @GetMapping("/translation-table")
     public String translation_table(Model model
     ) throws InterruptedException {
-        Thread.sleep(3000);
+     //   Thread.sleep(3000);
         model.addAttribute("translations", translationService.findAll());
         return "translation/translation_table_body";
     }

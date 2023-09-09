@@ -24,25 +24,10 @@
 
         <button>submit</button>
     </form>
+<div hx-indicator="#translation_loading_indicator" id="translation_table_rows" hx-trigger="RELOAD_TRANSLATION_TABLE from:body, load" hx-get="translation/translation-table">
 
+</div>
 
-    <table>
-        <thead>
-        <tr>
-            <th>Partner</th>
-            <th>Country</th>
-            <th>Profile</th>
-            <th>language</th>
-            <th>key</th>
-            <th>value</th>
-
-        </tr>
-
-        </thead>
-
-        <tbody hx-indicator="#translation_loading_indicator" id="translation_table_rows" hx-trigger="RELOAD_TRANSLATION_TABLE from:body, load" hx-get="translation/translation-table">
-        </tbody>
-    </table>
     <div>
         <img alt="loading translations..." id="translation_loading_indicator" class="htmx-indicator" src="/rings.svg">
     </div>

@@ -6,15 +6,27 @@
         <form hx-post="/translation" hx-history="false" _="on htmx:afterRequest trigger closeModal">
 
             <@u.selectField fieldName="key" fieldLabel="Key" options=translationKeys/>
-            <@u.selectField fieldName="partner" fieldLabel="Partner" options=partners/>
-            <@u.selectField fieldName="country" fieldLabel="Country" options=countries/>
-            <@u.selectField fieldName="profile" fieldLabel="Profile" options=profiles/>
-            <@u.selectField fieldName="lang" fieldLabel="Language" options=languages/>
+            <div class="grid">
+                <div>
+                    <@u.selectField fieldName="partner" fieldLabel="Partner" options=partners/>
+                </div>
+                <div>
+                    <@u.selectField fieldName="country" fieldLabel="Country" options=countries/>
+                </div>
+                <div>
+                    <@u.selectField fieldName="profile" fieldLabel="Profile" options=profiles/>
+                </div>
+                <div>
+                    <@u.selectField fieldName="lang" fieldLabel="Language" options=languages/>
+                </div>
+            </div>
+
+
 
             <label for="value">value</label>
             <input id="value" type="text" name="value"/>
 
-            <button>submit</button>
+            <button>Submit</button>
         </form>
         <button _="on click trigger closeModal">Close</button>
     </div>

@@ -8,7 +8,7 @@
     </button>
 
 
-    <button hx-get="/translation/new" hx-target="body" hx-swap="beforeend">Add Translation</button>
+    <button hx-get="/translation/new" hx-trigger="load,click" hx-target="body" hx-swap="beforeend">Add Translation</button>
 
 
     <form hx-post="/translation" hx-history="false" hx-swap="innerHTML" hx-target="#translation_table_rows">

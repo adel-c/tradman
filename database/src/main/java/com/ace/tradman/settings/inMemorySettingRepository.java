@@ -17,24 +17,24 @@ public class inMemorySettingRepository implements TranslationRepository {
     List<Translation> translations = new ArrayList<>();
 
     {
-        translations.add(trad("pra1", "FR", "pro1", "f1.key1", "fr", "p1f1k1Fr"));
-        translations.add(trad("pra1", "FR", "pro1", "f1.key2", "fr", "p1f1k2Fr"));
-        translations.add(trad("pra1", "FR", "pro3", "f2.key1", "fr", "p1f2k1Fr"));
-        translations.add(trad("pra1", "UK", "pro2", "f1.key1", "en", "p1f1k1en"));
-        translations.add(trad("pra1", "FR", "pro1", "f3.key1", "fr", "p1f3k1Fr"));
+        translations.add(trad("par1", "FR", "pro1", "f1.key1", "fr", "p1f1k1Fr"));
+        translations.add(trad("par1", "FR", "pro1", "f1.key2", "fr", "p1f1k2Fr"));
+        translations.add(trad("par1", "FR", "pro3", "f2.key1", "fr", "p1f2k1Fr"));
+        translations.add(trad("par1", "UK", "pro2", "f1.key1", "en", "p1f1k1en"));
+        translations.add(trad("par1", "FR", "pro1", "f3.key1", "fr", "p1f3k1Fr"));
 
 
-        translations.add(trad("pra2", "FR", "pro1", "f1.key1", "fr", "p2f1k1Fr"));
-        translations.add(trad("pra2", "FR", "pro1", "f1.key2", "fr", "p2f1k2Fr"));
-        translations.add(trad("pra2", "FR", "pro1", "f2.key1", "fr", "p2f2k1Fr"));
-        translations.add(trad("pra2", "UK", "pro1", "f1.key1", "en", "p2f1k1en"));
-        translations.add(trad("pra2", "FR", "pro2", "f3.key1", "fr", "p2f3k1Fr"));
+        translations.add(trad("par2", "FR", "pro1", "f1.key1", "fr", "p2f1k1Fr"));
+        translations.add(trad("par2", "FR", "pro1", "f1.key2", "fr", "p2f1k2Fr"));
+        translations.add(trad("par2", "FR", "pro1", "f2.key1", "fr", "p2f2k1Fr"));
+        translations.add(trad("par2", "UK", "pro1", "f1.key1", "en", "p2f1k1en"));
+        translations.add(trad("par2", "FR", "pro2", "f3.key1", "fr", "p2f3k1Fr"));
 
-        translations.add(trad("pra3", "FR", "pro3", "f1.key1", "es", "p3f1k1Es"));
-        translations.add(trad("pra3", "FR", "pro1", "f1.key2", "fr", "p3f1k2Fr"));
-        translations.add(trad("pra3", "FR", "pro2", "f2.key1", "fr", "p3f2k1Fr"));
-        translations.add(trad("pra3", "UK", "pro1", "f1.key1", "en", "p3f1k1en"));
-        translations.add(trad("pra3", "FR", "pro2", "f3.key1", "fr", "p3f3k1Fr"));
+        translations.add(trad("par3", "FR", "pro3", "f1.key1", "es", "p3f1k1Es"));
+        translations.add(trad("par3", "FR", "pro1", "f1.key2", "fr", "p3f1k2Fr"));
+        translations.add(trad("par3", "FR", "pro2", "f2.key1", "fr", "p3f2k1Fr"));
+        translations.add(trad("par3", "UK", "pro1", "f1.key1", "en", "p3f1k1en"));
+        translations.add(trad("par3", "FR", "pro2", "f3.key1", "fr", "p3f3k1Fr"));
     }
 
     private Translation trad(String partner, String country, String profile, String key, String lang, String value) {

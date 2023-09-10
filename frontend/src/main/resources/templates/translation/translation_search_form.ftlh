@@ -21,7 +21,7 @@
     </div>
 
     <label for="key">key</label>
-    <input id="key" type="text" name="key"
+    <input id="key" type="search" name="key"
     <#if preselectKey??>
     value="${preselectKey}"
     </#if>

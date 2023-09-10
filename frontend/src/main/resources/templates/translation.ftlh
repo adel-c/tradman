@@ -25,14 +25,9 @@
     <div>
         <#include "./translation/translation_search_form.ftlh">
     </div>
-    <div hx-indicator="#translation_loading_indicator"
-         hx-include="#translation_search_form"
-         hx-trigger="${trigger_reload_translation_table} from:body, load"
-         hx-post="translation/translation-table/0"
-         hx-vals='{sort:{"partner":"asc"}}'
-    >
 
-    </div>
+    <#include "./translation/translation_table_body.ftlh">
+
 
     <div>
         <img style="background-color: var(--primary);border-radius: 50%" alt="loading translations..." id="translation_loading_indicator" class="htmx-indicator" src="/rings.svg"/>

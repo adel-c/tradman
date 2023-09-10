@@ -41,6 +41,7 @@ public class TranslationPage {
     ObjectMapper objectMapper = new ObjectMapper();
     @GetMapping()
     public String main(Model model,
+                       HttpServletResponse response,
                        @RequestParam(value = "partners", required = false) List<String> partners,
                        @RequestParam(value = "countries", required = false) List<String> countries,
                        @RequestParam(value = "profiles", required = false) List<String> profiles,
@@ -54,6 +55,8 @@ public class TranslationPage {
 
         addConstToModel(model);
         addDataForSearchForm(model);
+        emptyTableModel(model);
+        addTriggerHeader(response, RELOAD_TRANSLATION_TABLE);
         return "translation";
     }
     @Data
@@ -110,21 +113,33 @@ public class TranslationPage {
         return showTable(model, page, searchTranslationQuery, "translation/translation_table_rows");
     }
 
-    private String showTable(Model model, int page, SearchTranslationQuery searchTranslationQuery, String x) throws JsonProcessingException {
+    @SneakyThrows
+    private String showTable(Model model, int page, SearchTranslationQuery searchTranslationQuery, String x) {
         addConstToModel(model);
         //   Thread.sleep(3000);
-        Page attributeValue = translationService.filterBy(page, searchTranslationQuery);
-        model.addAttribute("translations", attributeValue.getTranslations());
-        model.addAttribute("currentPage", attributeValue.getCurrentPage());
-        model.addAttribute("nextPage", attributeValue.getCurrentPage() + 1);
-        model.addAttribute("totalElement", attributeValue.getTotalElement());
-        model.addAttribute("pageSize", attributeValue.getPageSize());
-        model.addAttribute("hasNextPage", attributeValue.isHasNextPage());
+        Page translationSearch = translationService.filterBy(page, searchTranslationQuery);
+        model.addAttribute("translations", translationSearch.getTranslations());
+        model.addAttribute("currentPage", translationSearch.getCurrentPage());
+        model.addAttribute("nextPage", translationSearch.getCurrentPage() + 1);
+        model.addAttribute("totalElement", translationSearch.getTotalElement());
+        model.addAttribute("pageSize", translationSearch.getPageSize());
+        model.addAttribute("hasNextPage", translationSearch.isHasNextPage());
 
-        objectMapper.writeValueAsString(Map.of("sort",searchTranslationQuery.getQuerySort()));
+        String querySort = objectMapper.writeValueAsString(Map.of("sort", searchTranslationQuery.getQuerySort()));
+        model.addAttribute("querySort", querySort);
         return x;
     }
-
+    @SneakyThrows
+    public void emptyTableModel(Model model){
+        model.addAttribute("translations", List.of());
+        model.addAttribute("currentPage", 0);
+        model.addAttribute("nextPage", 0);
+        model.addAttribute("totalElement", 0);
+        model.addAttribute("pageSize", 0);
+        model.addAttribute("hasNextPage", 0);
+        String querySort = objectMapper.writeValueAsString(Map.of("sort", new SearchTranslationQuery.QuerySort().setNullsToNone()));
+        model.addAttribute("querySort", querySort);
+    }
     @GetMapping("/new")
     public String newModal(Model model
     ) {

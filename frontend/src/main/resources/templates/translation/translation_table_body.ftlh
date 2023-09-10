@@ -4,30 +4,45 @@
      hx-post="translation/translation-table/0"
      hx-vals='${querySort}'
      hx-swap="outerHTML"
+     id="translation-table"
 >
 
-<div>Total elements: ${totalElement} / page size: ${pageSize}</div>
+    <div>Total elements: ${totalElement} / page size: ${pageSize}</div>
 
 
-<table>
-    <thead>
+    <table>
+        <thead>
 
-    <tr>
+        <tr>
 
 
+            <th hx-target="#translation-table" hx-trigger="click" hx-swap="outerHTML" hx-post="translation/translation-table/sort/REPLACE/PARTNER">
+                <div hx-trigger="click[ctrlKey]" hx-target="#translation-table" hx-swap="outerHTML" hx-post="translation/translation-table/sort/ADD/PARTNER">
+                    Partner
+                </div>
+            </th>
+            <th hx-target="#translation-table" hx-swap="outerHTML" hx-post="translation/translation-table/sort/COUNTRY">
 
-        <th hx-get="translation/translation-table-header" >Partner</th>
-        <th>Country</th>
-        <th>Profile</th>
-        <th>language</th>
-        <th>key</th>
-        <th>value</th>
+                Country
+            </th>
+            <th hx-target="#translation-table" hx-swap="outerHTML" hx-post="translation/translation-table/sort/PROFILE">
+                Profile
+            </th>
+            <th hx-target="#translation-table" hx-swap="outerHTML"
+                hx-post="translation/translation-table/sort/LANGUAGE">language
+            </th>
+            <th hx-target="#translation-table" hx-swap="outerHTML" hx-post="translation/translation-table/sort/KEY">
+                key
+            </th>
+            <th hx-target="#translation-table" hx-swap="outerHTML" hx-post="translation/translation-table/sort/VALUE">
+                value
+            </th>
+            <th></th>
+        </tr>
+        </thead>
 
-    </tr>
-    </thead>
-
-    <tbody>
-    <#include "./translation_table_rows.ftlh"/>
-    </tbody>
-</table>
+        <tbody>
+        <#include "./translation_table_rows.ftlh"/>
+        </tbody>
+    </table>
 </div>

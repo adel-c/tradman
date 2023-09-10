@@ -8,19 +8,16 @@ import com.ace.tradman.partner.PartnerService;
 import com.ace.tradman.profile.Profile;
 import com.ace.tradman.profile.ProfileService;
 import com.ace.tradman.translation.*;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.servlet.http.HttpServletResponse;
-import java.net.URL;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
+import java.util.function.BiConsumer;
 import java.util.function.Function;
 
 import static com.ace.tradman.frontend.ModelUtils.addConstToModel;
@@ -39,6 +36,7 @@ public class TranslationPage {
     private final LanguageService languageService;
 
     ObjectMapper objectMapper = new ObjectMapper();
+
     @GetMapping()
     public String main(Model model,
                        HttpServletResponse response,
@@ -59,11 +57,12 @@ public class TranslationPage {
         addTriggerHeader(response, RELOAD_TRANSLATION_TABLE);
         return "translation";
     }
+
     @Data
     @Builder
     @AllArgsConstructor
     @NoArgsConstructor
-    public  static class SearchTranslationQuery2 {
+    public static class SearchTranslationQuery2 {
 
         List<String> partners;
         List<String> countries;
@@ -104,6 +103,47 @@ public class TranslationPage {
         return showTable(model, page, searchTranslationQuery, "translation/translation_table_body");
     }
 
+    @PostMapping("/translation-table/sort/{type}/{column}")
+    public String changeSort(Model model,
+                             @ModelAttribute SearchTranslationQuery searchTranslationQuery,
+                             @PathVariable("type") SortType type,
+                             @PathVariable("column") SortableColumns column
+    ) throws InterruptedException {
+        if (type == SortType.REPLACE) {
+            searchTranslationQuery.resetSort();
+        }
+        column.toggle(searchTranslationQuery);
+        return showTable(model, 0, searchTranslationQuery, "translation/translation_table_body");
+    }
+
+    @Getter
+    public enum SortType {
+        REPLACE,
+        ADD
+    }
+
+    @Getter
+    public enum SortableColumns {
+        PARTNER(SearchTranslationQuery::getPartnerSort, SearchTranslationQuery::setPartnerSort),
+        COUNTRY(SearchTranslationQuery::getCountrySort, SearchTranslationQuery::setCountrySort),
+        PROFILE(SearchTranslationQuery::getProfileSort, SearchTranslationQuery::setProfileSort),
+        LANGUAGE(SearchTranslationQuery::getLanguageSort, SearchTranslationQuery::setLanguageSort),
+        KEY(SearchTranslationQuery::getKeySort, SearchTranslationQuery::setKeySort),
+        VALUE(SearchTranslationQuery::getValueSort, SearchTranslationQuery::setValueSort);
+        private final Function<SearchTranslationQuery, SearchTranslationQuery.Sort> getter;
+        private final BiConsumer<SearchTranslationQuery, SearchTranslationQuery.Sort> setter;
+
+        SortableColumns(Function<SearchTranslationQuery, SearchTranslationQuery.Sort> getter, BiConsumer<SearchTranslationQuery, SearchTranslationQuery.Sort> setter) {
+            this.getter = getter;
+            this.setter = setter;
+        }
+
+        public void toggle(SearchTranslationQuery searchTranslationQuery) {
+            SearchTranslationQuery.Sort sort = getter.apply(searchTranslationQuery);
+            setter.accept(searchTranslationQuery, sort.toggle());
+        }
+    }
+
     @PostMapping("/translation-table/rows/{page}")
     public String translation_table2(Model model,
                                      @ModelAttribute SearchTranslationQuery searchTranslationQuery,
@@ -129,17 +169,19 @@ public class TranslationPage {
         model.addAttribute("querySort", querySort);
         return x;
     }
+
     @SneakyThrows
-    public void emptyTableModel(Model model){
+    public void emptyTableModel(Model model) {
         model.addAttribute("translations", List.of());
         model.addAttribute("currentPage", 0);
         model.addAttribute("nextPage", 0);
         model.addAttribute("totalElement", 0);
         model.addAttribute("pageSize", 0);
         model.addAttribute("hasNextPage", 0);
-        String querySort = objectMapper.writeValueAsString( new SearchTranslationQuery.QuerySort().setNullsToNone());
+        String querySort = objectMapper.writeValueAsString(new SearchTranslationQuery.QuerySort().setNullsToNone());
         model.addAttribute("querySort", querySort);
     }
+
     @GetMapping("/new")
     public String newModal(Model model
     ) {
@@ -147,7 +189,8 @@ public class TranslationPage {
         addDataForSearchForm(model);
         return "translation/new_translation_modal";
     }
-//todo use params
+
+    //todo use params
     @GetMapping("/update/{partner}/{country}/{profile}/{language}/{key}")
     public String updateModal(Model model,
                               @PathVariable("partner") String partner,
@@ -185,9 +228,11 @@ public class TranslationPage {
     private static void addTriggerHeader(HttpServletResponse response, String reloadTranslationTable) {
         response.addHeader("HX-Trigger-After-Settle", reloadTranslationTable);
     }
+
     private static void addReplaceUrlHeader(HttpServletResponse response, String headerValue) {
         response.addHeader("HX-Replace-Url", headerValue);
     }
+
     @Value
     public static class SelectOption {
         String value;

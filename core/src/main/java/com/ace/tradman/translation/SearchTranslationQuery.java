@@ -9,7 +9,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SearchTranslationQuery {
-    enum Sort {
+    public enum Sort {
         ASC,
         DESC,
         NONE;
@@ -33,6 +33,15 @@ public class SearchTranslationQuery {
     Sort languageSort;
     Sort keySort;
     Sort valueSort;
+
+    public void resetSort(){
+        partnerSort=Sort.NONE;
+        countrySort=Sort.NONE;
+        profileSort=Sort.NONE;
+        languageSort=Sort.NONE;
+        keySort=Sort.NONE;
+        valueSort=Sort.NONE;
+    }
     public QuerySort getQuerySort() {
 
 

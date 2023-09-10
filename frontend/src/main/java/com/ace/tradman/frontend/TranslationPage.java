@@ -103,13 +103,13 @@ public class TranslationPage {
         return showTable(model, page, searchTranslationQuery, "translation/translation_table_body");
     }
 
-    @PostMapping("/translation-table/sort/{type}/{column}")
+    @PostMapping("/translation-table/sort/{column}")
     public String changeSort(Model model,
                              @ModelAttribute SearchTranslationQuery searchTranslationQuery,
-                             @PathVariable("type") SortType type,
+                             @RequestParam("addToSort") boolean addToSort,
                              @PathVariable("column") SortableColumns column
     ) throws InterruptedException {
-        if (type == SortType.REPLACE) {
+        if (addToSort) {
             searchTranslationQuery.resetSort();
         }
         column.toggle(searchTranslationQuery);

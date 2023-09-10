@@ -5,6 +5,7 @@
      hx-vals='${querySort}'
      hx-swap="outerHTML"
      id="translation-table"
+
 >
 
     <div>Total elements: ${totalElement} / page size: ${pageSize}</div>
@@ -16,25 +17,23 @@
         <tr>
 
 
-            <th hx-target="#translation-table" hx-trigger="click" hx-swap="outerHTML" hx-post="translation/translation-table/sort/REPLACE/PARTNER">
-                <div hx-trigger="click[ctrlKey]" hx-target="#translation-table" hx-swap="outerHTML" hx-post="translation/translation-table/sort/ADD/PARTNER">
+            <th      hx-vals='js:{addToSort: event.ctrlKey}'    hx-target="#translation-table" hx-trigger="click" hx-swap="outerHTML" hx-post="translation/translation-table/sort/PARTNER">
                     Partner
-                </div>
             </th>
-            <th hx-target="#translation-table" hx-swap="outerHTML" hx-post="translation/translation-table/sort/COUNTRY">
+            <th      hx-vals='js:{addToSort: event.ctrlKey}'    hx-target="#translation-table" hx-swap="outerHTML" hx-post="translation/translation-table/sort/COUNTRY">
 
                 Country
             </th>
-            <th hx-target="#translation-table" hx-swap="outerHTML" hx-post="translation/translation-table/sort/PROFILE">
+            <th      hx-vals='js:{addToSort: event.ctrlKey}'    hx-target="#translation-table" hx-swap="outerHTML" hx-post="translation/translation-table/sort/PROFILE">
                 Profile
             </th>
-            <th hx-target="#translation-table" hx-swap="outerHTML"
+            <th      hx-vals='js:{addToSort: event.ctrlKey}'    hx-target="#translation-table" hx-swap="outerHTML"
                 hx-post="translation/translation-table/sort/LANGUAGE">language
             </th>
-            <th hx-target="#translation-table" hx-swap="outerHTML" hx-post="translation/translation-table/sort/KEY">
+            <th      hx-vals='js:{addToSort: event.ctrlKey}'    hx-target="#translation-table" hx-swap="outerHTML" hx-post="translation/translation-table/sort/KEY">
                 key
             </th>
-            <th hx-target="#translation-table" hx-swap="outerHTML" hx-post="translation/translation-table/sort/VALUE">
+            <th      hx-vals='js:{addToSort: event.ctrlKey}'    hx-target="#translation-table" hx-swap="outerHTML" hx-post="translation/translation-table/sort/VALUE">
                 value
             </th>
             <th></th>

@@ -1,5 +1,5 @@
 <div>Total elements: ${totalElement} / page size: ${pageSize}</div>
-<table>
+<table role="grid">
     <thead>
     <tr>
         <th>Partner</th>

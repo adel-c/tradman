@@ -1,4 +1,4 @@
-<table id="translation_definition_table">
+<table id="translation_definition_table" role="grid">
     <thead>
     <tr>
         <th>key</th>

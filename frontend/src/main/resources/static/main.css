@@ -1,0 +1,7 @@
+/* Deep-orange Light scheme (Default) */
+/* Can be forced with data-theme="light" */
+[data-theme="light"],
+:root:not([data-theme="dark"]) {
+    --primary: #059284;;
+    --primary-hover: #059284FF;
+}

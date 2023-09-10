@@ -9,7 +9,7 @@
 >
     <#assign hasATraslation= translation?has_content/>
 
-    <article style="width: 80vw">
+    <article style="width: 40vw;max-width: 100vw">
         <#if hasATraslation>
             <h3>Edit Translation</h3>
         <#else >

@@ -5,3 +5,7 @@
     --primary: #059284;;
     --primary-hover: #059284FF;
 }
+
+select {
+    overflow-y: auto;
+}

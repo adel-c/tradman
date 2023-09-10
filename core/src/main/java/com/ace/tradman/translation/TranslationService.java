@@ -43,8 +43,8 @@ public class TranslationService {
                         querySort.getValueSort().buildComparator(Translation::getValue))
                 .filter(Optional::isPresent)
                 .map(Optional::get)
+                .reduce(Comparator::thenComparing);
 
-                .reduce((v, acc) -> acc.thenComparing(v));
 
         return reduce;
     }

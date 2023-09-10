@@ -2,7 +2,7 @@
         <tr
                 <#if hasNextPage && !translation_has_next>
                     hx-indicator="#translation_loading_indicator"
-                    hx-include="#translation_search_form"
+
                     hx-post="translation/translation-table/rows/${nextPage}"
                     hx-trigger="revealed"
                     hx-swap="afterend"

@@ -28,7 +28,9 @@
     <div hx-indicator="#translation_loading_indicator"
          hx-include="#translation_search_form"
          hx-trigger="${trigger_reload_translation_table} from:body, load"
-         hx-post="translation/translation-table/0">
+         hx-post="translation/translation-table/0"
+         hx-vals='{sort:{"partner":"asc"}}'
+    >
 
     </div>
 

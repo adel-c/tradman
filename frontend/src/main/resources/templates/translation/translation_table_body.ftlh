@@ -1,6 +1,6 @@
 <div hx-indicator="#translation_loading_indicator"
      hx-include="#translation_search_form"
-     hx-trigger="${trigger_reload_translation_table} from:body"
+     hx-trigger="${trigger_reload_translation_table} from:body<#if reloadOnDisplay??>, load</#if>"
      hx-post="translation/translation-table/0"
      hx-vals='${querySort}'
      hx-swap="outerHTML"

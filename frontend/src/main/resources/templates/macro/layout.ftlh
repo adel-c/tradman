@@ -13,7 +13,7 @@
         <link rel="stylesheet" href="/modal_style.css"/>
 
     </head>
-    <body>
+    <body hx-history="false">
     <script type="text/javascript">
         function downloadExportFor(element,baseUrl,targetForm) {
             function computeUrlFrom(relativePath,parameters) {

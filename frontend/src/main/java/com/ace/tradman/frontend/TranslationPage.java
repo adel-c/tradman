@@ -183,6 +183,7 @@ public class TranslationPage {
         model.addAttribute("hasNextPage", 0);
         String querySort = objectMapper.writeValueAsString(new SearchTranslationQuery.QuerySort().setNullsToNone());
         model.addAttribute("querySort", querySort);
+        model.addAttribute("reloadOnDisplay",true);
     }
 
     @GetMapping("/new")

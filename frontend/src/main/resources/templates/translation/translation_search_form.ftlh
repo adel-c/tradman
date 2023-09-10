@@ -28,17 +28,17 @@
     />
 
     <div class="grid">
-        <button onclick="htmx.trigger('body','translation-clear-search-form')"
+        <div  role="button" onclick="htmx.trigger('body','translation-clear-search-form')"
         >Clear
-        </button>
-        <button onclick="downloadExportFor(this,'/api/download-file')"
+        </div>
+        <div  role="button" onclick="downloadExportFor(this,'/api/download-file')"
         >Export
-        </button>
+        </div>
 
-        <button <#--_="on click trigger RELOAD_TRANSLATION_TABLE" -->
+        <div role="button" <#--_="on click trigger RELOAD_TRANSLATION_TABLE" -->
 
                 onclick="htmx.trigger('body','${trigger_reload_translation_table}')">Search
-        </button>
+        </div>
     </div>
 
 </form>

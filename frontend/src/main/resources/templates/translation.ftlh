@@ -4,9 +4,9 @@
 
 <@l.main title="Translations">
 
-    <button hx-get="/translation/new" <#--hx-trigger="load,click"--> hx-target="body" hx-swap="beforeend">Add
+    <div role="button"  hx-get="/translation/new" <#--hx-trigger="load,click"--> hx-target="body" hx-swap="beforeend">Add
         Translation
-    </button>
+    </div>
 
 
 

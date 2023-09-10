@@ -27,7 +27,14 @@ public class SearchTranslationQuery {
     List<String> profiles;
     List<String> languages;
     String key;
+    QuerySort querySort;
 
+    public QuerySort getQuerySort() {
+        if(querySort == null){
+            return new QuerySort().setNullsToNone();
+        }
+        return querySort.setNullsToNone();
+    }
 
     @Getter
     @Data
@@ -41,5 +48,27 @@ public class SearchTranslationQuery {
         private Sort language;
         private Sort key;
         private Sort value;
+
+        public QuerySort setNullsToNone(){
+            if(partner == null){
+                partner=Sort.NONE;
+            }
+            if(country == null){
+                country=Sort.NONE;
+            }
+            if(profile == null){
+                profile=Sort.NONE;
+            }
+            if(language == null){
+                language=Sort.NONE;
+            }
+            if(key == null){
+                key=Sort.NONE;
+            }
+            if(value == null){
+                value=Sort.NONE;
+            }
+            return this;
+        }
     }
 }

@@ -8,6 +8,8 @@ import com.ace.tradman.partner.PartnerService;
 import com.ace.tradman.profile.Profile;
 import com.ace.tradman.profile.ProfileService;
 import com.ace.tradman.translation.*;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +19,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import javax.servlet.http.HttpServletResponse;
 import java.net.URL;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
 
@@ -35,6 +38,7 @@ public class TranslationPage {
     private final PartnerService partnerService;
     private final LanguageService languageService;
 
+    ObjectMapper objectMapper = new ObjectMapper();
     @GetMapping()
     public String main(Model model,
                        @RequestParam(value = "partners", required = false) List<String> partners,
@@ -93,6 +97,7 @@ public class TranslationPage {
                                     @ModelAttribute SearchTranslationQuery searchTranslationQuery,
                                     @PathVariable("page") int page
     ) throws InterruptedException {
+
         return showTable(model, page, searchTranslationQuery, "translation/translation_table_body");
     }
 
@@ -105,7 +110,7 @@ public class TranslationPage {
         return showTable(model, page, searchTranslationQuery, "translation/translation_table_rows");
     }
 
-    private String showTable(Model model, int page, SearchTranslationQuery searchTranslationQuery, String x) {
+    private String showTable(Model model, int page, SearchTranslationQuery searchTranslationQuery, String x) throws JsonProcessingException {
         addConstToModel(model);
         //   Thread.sleep(3000);
         Page attributeValue = translationService.filterBy(page, searchTranslationQuery);
@@ -115,6 +120,8 @@ public class TranslationPage {
         model.addAttribute("totalElement", attributeValue.getTotalElement());
         model.addAttribute("pageSize", attributeValue.getPageSize());
         model.addAttribute("hasNextPage", attributeValue.isHasNextPage());
+
+        objectMapper.writeValueAsString(Map.of("sort",searchTranslationQuery.getQuerySort()));
         return x;
     }
 

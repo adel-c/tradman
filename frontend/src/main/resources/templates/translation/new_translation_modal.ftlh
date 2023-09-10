@@ -53,7 +53,7 @@
 
             </#if>
             <label for="value">value</label>
-            <input id="value" type="text" name="value" value="${hasATraslation?then(translation.value,'')}"/>
+            <input id="value" type="text" name="value" value="${hasATraslation?then(translation.value,'')}" autocomplete="off"/>
             <footer class="grid">
 
                 <button _="on click halt the event then trigger closeModal" role="button">Close</button>

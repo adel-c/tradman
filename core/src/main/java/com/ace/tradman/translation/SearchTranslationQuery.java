@@ -27,14 +27,25 @@ public class SearchTranslationQuery {
     List<String> profiles;
     List<String> languages;
     String key;
-    QuerySort querySort;
-
+    Sort partnerSort;
+    Sort countrySort;
+    Sort profileSort;
+    Sort languageSort;
+    Sort keySort;
+    Sort valueSort;
     public QuerySort getQuerySort() {
-        if(querySort == null){
-            return new QuerySort().setNullsToNone();
-        }
-        return querySort.setNullsToNone();
+
+
+        return QuerySort.builder()
+                .partnerSort(partnerSort)
+                .countrySort(countrySort)
+                .profileSort(profileSort)
+                .languageSort(languageSort)
+                .keySort(keySort)
+                .valueSort(valueSort)
+                .build().setNullsToNone();
     }
+
 
     @Getter
     @Data
@@ -42,33 +53,33 @@ public class SearchTranslationQuery {
     @AllArgsConstructor
     @NoArgsConstructor
     public static class QuerySort {
-        private Sort partner;
-        private Sort country;
-        private Sort profile;
-        private Sort language;
-        private Sort key;
-        private Sort value;
-
+        Sort partnerSort;
+        Sort countrySort;
+        Sort profileSort;
+        Sort languageSort;
+        Sort keySort;
+        Sort valueSort;
         public QuerySort setNullsToNone(){
-            if(partner == null){
-                partner=Sort.NONE;
+            if(partnerSort == null){
+                partnerSort =Sort.NONE;
             }
-            if(country == null){
-                country=Sort.NONE;
+            if(countrySort == null){
+                countrySort =Sort.NONE;
             }
-            if(profile == null){
-                profile=Sort.NONE;
+            if(profileSort == null){
+                profileSort =Sort.NONE;
             }
-            if(language == null){
-                language=Sort.NONE;
+            if(languageSort == null){
+                languageSort =Sort.NONE;
             }
-            if(key == null){
-                key=Sort.NONE;
+            if(keySort == null){
+                keySort =Sort.NONE;
             }
-            if(value == null){
-                value=Sort.NONE;
+            if(valueSort == null){
+                valueSort =Sort.NONE;
             }
             return this;
         }
+
     }
 }

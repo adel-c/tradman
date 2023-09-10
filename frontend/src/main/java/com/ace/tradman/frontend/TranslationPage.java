@@ -125,7 +125,7 @@ public class TranslationPage {
         model.addAttribute("pageSize", translationSearch.getPageSize());
         model.addAttribute("hasNextPage", translationSearch.isHasNextPage());
 
-        String querySort = objectMapper.writeValueAsString(Map.of("sort", searchTranslationQuery.getQuerySort()));
+        String querySort = objectMapper.writeValueAsString(searchTranslationQuery.getQuerySort());
         model.addAttribute("querySort", querySort);
         return x;
     }
@@ -137,7 +137,7 @@ public class TranslationPage {
         model.addAttribute("totalElement", 0);
         model.addAttribute("pageSize", 0);
         model.addAttribute("hasNextPage", 0);
-        String querySort = objectMapper.writeValueAsString(Map.of("sort", new SearchTranslationQuery.QuerySort().setNullsToNone()));
+        String querySort = objectMapper.writeValueAsString( new SearchTranslationQuery.QuerySort().setNullsToNone());
         model.addAttribute("querySort", querySort);
     }
     @GetMapping("/new")

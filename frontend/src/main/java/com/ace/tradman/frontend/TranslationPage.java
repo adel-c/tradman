@@ -44,16 +44,6 @@ public class TranslationPage {
                        @RequestParam(value = "key", required = false) String key
     ) {
 
-        String s = UriComponentsBuilder.newInstance()
-
-                .path("/translation/translation-search-form")
-                .queryParam("partners", nonNull(partners))
-                .queryParam("countries", nonNull(countries))
-                .queryParam("profiles", nonNull(profiles))
-                .queryParam("languages", nonNull(languages))
-                .queryParam("key",key)
-                .build()
-                .toString();
 
         model.addAttribute("preselectKey", key);
 
@@ -86,6 +76,7 @@ public class TranslationPage {
         addConstToModel(model);
         addDataForSearchForm(model);
         addTriggerHeader(response, RELOAD_TRANSLATION_TABLE);
+        addReplaceUrlHeader(response, "/translation");
         return "translation/translation_search_form";
     }
 
@@ -172,7 +163,9 @@ public class TranslationPage {
     private static void addTriggerHeader(HttpServletResponse response, String reloadTranslationTable) {
         response.addHeader("HX-Trigger-After-Settle", reloadTranslationTable);
     }
-
+    private static void addReplaceUrlHeader(HttpServletResponse response, String headerValue) {
+        response.addHeader("HX-Replace-Url", headerValue);
+    }
     @Value
     public static class SelectOption {
         String value;

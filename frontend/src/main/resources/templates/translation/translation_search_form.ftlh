@@ -21,7 +21,11 @@
     </div>
 
     <label for="key">key</label>
-    <input id="key" type="text" name="key"/>
+    <input id="key" type="text" name="key"
+    <#if preselectKey??>
+    value="${preselectKey}"
+    </#if>
+    />
 
     <div class="grid">
         <button onclick="htmx.trigger('body','translation-clear-search-form')"

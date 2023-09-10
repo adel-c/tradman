@@ -8,19 +8,21 @@ import com.ace.tradman.partner.PartnerService;
 import com.ace.tradman.profile.Profile;
 import com.ace.tradman.profile.ProfileService;
 import com.ace.tradman.translation.*;
-import lombok.AllArgsConstructor;
-import lombok.Value;
+import lombok.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.servlet.http.HttpServletResponse;
+import java.net.URL;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 
 import static com.ace.tradman.frontend.ModelUtils.addConstToModel;
 import static com.ace.tradman.frontend.TriggersConst.RELOAD_TRANSLATION_TABLE;
+import static java.util.Objects.requireNonNullElse;
 
 @Controller
 @RequestMapping("/translation")
@@ -34,11 +36,47 @@ public class TranslationPage {
     private final LanguageService languageService;
 
     @GetMapping()
-    public String main(Model model
+    public String main(Model model,
+                       @RequestParam(value = "partners", required = false) List<String> partners,
+                       @RequestParam(value = "countries", required = false) List<String> countries,
+                       @RequestParam(value = "profiles", required = false) List<String> profiles,
+                       @RequestParam(value = "languages", required = false) List<String> languages,
+                       @RequestParam(value = "key", required = false) String key
     ) {
+
+        String s = UriComponentsBuilder.newInstance()
+
+                .path("/translation/translation-search-form")
+                .queryParam("partners", nonNull(partners))
+                .queryParam("countries", nonNull(countries))
+                .queryParam("profiles", nonNull(profiles))
+                .queryParam("languages", nonNull(languages))
+                .queryParam("key",key)
+                .build()
+                .toString();
+
+        model.addAttribute("preselectKey", key);
+
+
         addConstToModel(model);
         addDataForSearchForm(model);
         return "translation";
+    }
+    @Data
+    @Builder
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public  static class SearchTranslationQuery2 {
+
+        List<String> partners;
+        List<String> countries;
+        List<String> profiles;
+        List<String> languages;
+        String key;
+    }
+
+    private List<String> nonNull(List<String> v) {
+        return requireNonNullElse(v, List.of());
     }
 
     @GetMapping("/translation-search-form")
@@ -66,10 +104,11 @@ public class TranslationPage {
     ) throws InterruptedException {
         return showTable(model, page, searchTranslationQuery, "translation/translation_table_body");
     }
+
     @PostMapping("/translation-table/rows/{page}")
     public String translation_table2(Model model,
-                                    @ModelAttribute SearchTranslationQuery searchTranslationQuery,
-                                    @PathVariable("page") int page
+                                     @ModelAttribute SearchTranslationQuery searchTranslationQuery,
+                                     @PathVariable("page") int page
     ) throws InterruptedException {
         Thread.sleep(1000);
         return showTable(model, page, searchTranslationQuery, "translation/translation_table_rows");
@@ -95,7 +134,7 @@ public class TranslationPage {
         addDataForSearchForm(model);
         return "translation/new_translation_modal";
     }
-
+//todo use params
     @GetMapping("/update/{partner}/{country}/{profile}/{language}/{key}")
     public String updateModal(Model model,
                               @PathVariable("partner") String partner,

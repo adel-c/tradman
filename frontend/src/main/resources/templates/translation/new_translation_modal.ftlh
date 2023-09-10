@@ -4,15 +4,20 @@
     <label for="${fieldName}">${fieldLabel}</label>
     <input id="${fieldName}" type="text" name="${fieldName}" readonly value="${value}"/>
 </#macro>
-<div id="modal" _="on closeModal add .closing then wait for animationend then remove me">
-    <div class="modal-underlay" _="on click trigger closeModal"></div>
-    <div class="modal-content">
-        <#assign hasATraslation= translation?has_content/>
+<dialog open id="modal" _="on closeModal remove me"
+        <#--        on closeModal add .modal-is-closing then wait for animationend then remove me-->
+>
+    <#assign hasATraslation= translation?has_content/>
 
-        <h1>New Translation</h1>
+    <article style="width: 80vw">
+        <#if hasATraslation>
+            <h3>Edit Translation</h3>
+        <#else >
+            <h3>New Translation</h3>
+        </#if>
+
         <form hx-post="/translation" hx-history="false" _="on htmx:afterRequest trigger closeModal">
             <#if hasATraslation>
-
                 <@readOnlyField fieldName="key" fieldLabel="Key" value=translation.key/>
                 <div class="grid">
                     <div>
@@ -49,9 +54,11 @@
             </#if>
             <label for="value">value</label>
             <input id="value" type="text" name="value" value="${hasATraslation?then(translation.value,'')}"/>
+            <footer class="grid">
 
-            <button>Submit</button>
+                <button _="on click halt the event then trigger closeModal" role="button">Close</button>
+                <button>Submit</button>
+            </footer>
         </form>
-        <button _="on click trigger closeModal">Close</button>
-    </div>
-</div>
+    </article>
+</dialog>

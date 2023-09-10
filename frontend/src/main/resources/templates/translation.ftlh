@@ -3,10 +3,6 @@
 <#import "./translation/translation_utils.ftlh" as tu>
 
 <@l.main title="Translations">
-    <button _="on click toggle .clicked">
-        Toggle the "clicked" class on me
-    </button>
-
 
     <button hx-get="/translation/new" <#--hx-trigger="load,click"--> hx-target="body" hx-swap="beforeend">Add
         Translation

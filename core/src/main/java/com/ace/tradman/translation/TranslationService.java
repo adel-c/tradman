@@ -4,8 +4,11 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 @Service
 @AllArgsConstructor
@@ -22,7 +25,28 @@ public class TranslationService {
         if (searchTranslationQuery != null) {
             list = list.stream().filter(t -> matchTranslation(t, searchTranslationQuery)).toList();
         }
-        return buildPageFrom(page, list);
+        Optional<Comparator<Translation>> translationComparator = buildCompartor(searchTranslationQuery.getQuerySort());
+        if(translationComparator.isPresent()){
+            list= new ArrayList<>(list);
+            list.sort(translationComparator.get());
+        }
+        Page page1 = buildPageFrom(page, list);
+        return page1;
+    }
+
+    private  Optional<Comparator<Translation>> buildCompartor(SearchTranslationQuery.QuerySort querySort) {
+        Optional<Comparator<Translation>> reduce = Stream.of(querySort.getPartnerSort().buildComparator(Translation::getPartner),
+                        querySort.getCountrySort().buildComparator(Translation::getCountry),
+                        querySort.getProfileSort().buildComparator(Translation::getProfile),
+                        querySort.getLanguageSort().buildComparator(Translation::getLang),
+                        querySort.getKeySort().buildComparator(Translation::getKey),
+                        querySort.getValueSort().buildComparator(Translation::getValue))
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+
+                .reduce((v, acc) -> acc.thenComparing(v));
+
+        return reduce;
     }
 
     Page buildPageFrom(int page, List<Translation> translations) {

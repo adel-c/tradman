@@ -109,10 +109,11 @@ public class TranslationPage {
                              @RequestParam("addToSort") boolean addToSort,
                              @PathVariable("column") SortableColumns column
     ) throws InterruptedException {
-        if (addToSort) {
+        SearchTranslationQuery.Sort sort = column.nextValue(searchTranslationQuery);
+        if (!addToSort) {
             searchTranslationQuery.resetSort();
         }
-        column.toggle(searchTranslationQuery);
+        column.setValue(searchTranslationQuery,sort);
         return showTable(model, 0, searchTranslationQuery, "translation/translation_table_body");
     }
 
@@ -137,10 +138,12 @@ public class TranslationPage {
             this.getter = getter;
             this.setter = setter;
         }
-
-        public void toggle(SearchTranslationQuery searchTranslationQuery) {
+        public SearchTranslationQuery.Sort nextValue(SearchTranslationQuery searchTranslationQuery) {
             SearchTranslationQuery.Sort sort = getter.apply(searchTranslationQuery);
-            setter.accept(searchTranslationQuery, sort.toggle());
+           return sort.toggle();
+        }
+        public void setValue(SearchTranslationQuery searchTranslationQuery,SearchTranslationQuery.Sort sort ) {
+            setter.accept(searchTranslationQuery, sort);
         }
     }
 

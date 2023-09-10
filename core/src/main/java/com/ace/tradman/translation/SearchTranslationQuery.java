@@ -2,7 +2,10 @@ package com.ace.tradman.translation;
 
 import lombok.*;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
+import java.util.function.Function;
 
 @Data
 @Builder
@@ -18,6 +21,14 @@ public class SearchTranslationQuery {
             return switch (this) {
                 case NONE, ASC -> DESC;
                 case DESC -> ASC;
+            };
+        }
+        public Optional<Comparator<Translation>> buildComparator(Function<Translation,String> getter){
+
+            return switch (this){
+                case NONE -> Optional.empty();
+                case ASC -> Optional.of(Comparator.comparing(getter).reversed());
+                case DESC -> Optional.of(Comparator.comparing(getter));
             };
         }
     }

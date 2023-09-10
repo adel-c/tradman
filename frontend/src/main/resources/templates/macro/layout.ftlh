@@ -47,8 +47,8 @@
     <div class="grid">
         <a href="/">Go To Page 1</a>
 
-        <a href="/translation-definition">setting definition</a>
-        <a href="/translation">settings</a>
+        <a href="/translation-definition">translation keys</a>
+        <a href="/translation">translations</a>
     </div>
 
     <main id="mainContent" class="container">

@@ -2,6 +2,7 @@
     <thead>
     <tr>
         <th>key</th>
+        <th></th>
 
     </tr>
     </thead>
@@ -11,6 +12,7 @@
         <tr>
 
             <td>    ${translationDefinition.key} </td>
+            <td>    <a href="/translation?key=${translationDefinition.key}">go to</a> </td>
 
         </tr>
     </#list>

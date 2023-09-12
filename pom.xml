@@ -37,5 +37,6 @@
     <module>application</module>
     <module>frontend</module>
     <module>database</module>
+    <module>tailwind-lib</module>
 </modules>
 </project>

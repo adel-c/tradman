@@ -10,7 +10,7 @@
         <script src="/webjars/hyperscript.org/0.9.11/dist/_hyperscript.js"></script>
 
         <link rel="stylesheet" href="/webjars/picocss__pico/1.5.10/css/pico.css"/>
-        <link rel="stylesheet" href="/style.css"/>
+        <link rel="stylesheet" href="/static/style.css"/>
                 <link rel="stylesheet" href="/main.css"/>
         <#--        <link rel="stylesheet" href="/modal_style.css"/>-->
 

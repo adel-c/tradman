@@ -28,6 +28,16 @@
             <groupId>org.webjars.npm</groupId>
             <artifactId>hyperscript.org</artifactId>
             <version>0.9.11</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.webjars.npm</groupId>
+                    <artifactId>terser</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.webjars.npm</groupId>
+                    <artifactId>markdown-it-deflist</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.webjars.npm</groupId>

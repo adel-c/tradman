@@ -11,5 +11,9 @@ public class WebJarsConfig implements WebMvcConfigurer {
         registry
                 .addResourceHandler("/webjars/**")
                 .addResourceLocations("/webjars/");
+        registry
+                .addResourceHandler("/static/**")
+                .addResourceLocations("classpath:/static/");
+
     }
 }

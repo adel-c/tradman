@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "tailwind:css": "postcss ./style.css -o ./target/classes/static/style.css",
-    "dev": "npm run tailwind:css"
+    "dev": "postcss ./style.css -o ./target/classes/static/style.css --watch"
   },
   "author": "",
   "license": "ISC",

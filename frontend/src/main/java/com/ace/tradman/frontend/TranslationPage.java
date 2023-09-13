@@ -48,7 +48,7 @@ public class TranslationPage {
 
         addConstToModel(model);
         addDataForSearchForm(model);
-        return "translation.html";
+        return "translation";
     }
     @Data
     @Builder

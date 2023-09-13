@@ -16,7 +16,7 @@ public class MainController {
     public String main(@ModelAttribute("model") ModelMap model, @RequestParam Map<String, String> allRequestParams
     ) {
 
-        return "index.html";
+        return "index";
     }
 
 

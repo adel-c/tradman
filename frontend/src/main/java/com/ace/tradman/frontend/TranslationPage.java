@@ -12,10 +12,8 @@ import lombok.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.servlet.http.HttpServletResponse;
-import java.net.URL;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
@@ -50,7 +48,7 @@ public class TranslationPage {
 
         addConstToModel(model);
         addDataForSearchForm(model);
-        return "translation";
+        return "translation.html";
     }
     @Data
     @Builder

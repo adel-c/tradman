@@ -1,0 +1,10 @@
+{
+  "overrides": [
+    {
+      "files": ["*.ftlh"],
+      "options": {
+        "parser": "html"
+      }
+    }
+  ]
+}

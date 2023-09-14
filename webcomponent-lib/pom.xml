@@ -8,9 +8,9 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>tailwind-lib</artifactId>
-    <name>tailwind-lib</name>
-    <description>tailwind-lib</description>
+    <artifactId>webcomponent-lib</artifactId>
+    <name>webcomponent-lib</name>
+    <description>webcomponent-lib</description>
     <properties>
         <java.version>17</java.version>
     </properties>

@@ -8,7 +8,7 @@
         Translation
     </div>
 
-
+${customAtt}
 
 <#--    <div hx-indicator="#translation_loading_indicator"
          hx-trigger="load"

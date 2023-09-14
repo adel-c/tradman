@@ -27,7 +27,7 @@
     </#if>
     />
 
-    <div class="grid">
+    <div class="search-form-buttons">
         <div  role="button" onclick="htmx.trigger('body','translation-clear-search-form')"
         >Clear
         </div>

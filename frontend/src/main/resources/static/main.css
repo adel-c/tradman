@@ -9,6 +9,7 @@
 select {
     overflow-y: auto;
 }
+
 .parent {
     display: grid;
     grid-template: auto 1fr auto / auto 0.8fr auto;
@@ -38,6 +39,17 @@ footer {
 }
 
 
-#modal{
+#modal {
     /*background-color: aqua;*/
+}
+
+.search-form-buttons {
+    display: flex;
+    justify-content: end;
+    gap: 1rem;
+
+}
+
+.search-form-buttons > div[role=button] {
+    width: 10rem;
 }

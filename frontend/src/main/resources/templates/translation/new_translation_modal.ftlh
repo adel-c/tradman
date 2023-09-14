@@ -4,7 +4,7 @@
     <label for="${fieldName}">${fieldLabel}</label>
     <input id="${fieldName}" type="text" name="${fieldName}" readonly value="${value}"/>
 </#macro>
-<dialog open id="modal" _="on closeModal remove me"
+<dialog id="new_translation_modal" _="on closeModal remove me end on load call me.showModal()"
         <#--        on closeModal add .modal-is-closing then wait for animationend then remove me-->
 >
     <#assign hasATraslation= translation?has_content/>

@@ -39,6 +39,8 @@
 
                 onclick="htmx.trigger('body','${trigger_reload_translation_table}')">Search
         </div>
+
+
     </div>
 
 </form>

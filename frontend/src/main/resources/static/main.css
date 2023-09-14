@@ -20,6 +20,7 @@ select {
 header {
     padding: 2rem;
     grid-column: 1 / 4;
+    background-color: #059284;
 }
 
 .left-side {
@@ -51,5 +52,10 @@ footer {
 }
 
 .search-form-buttons > div[role=button] {
-    width: 10rem;
+    min-width: 10ch;
+    max-height: 2rem;
+    padding: 0;
+}
+div[role=button] {
+
 }

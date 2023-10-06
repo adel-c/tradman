@@ -23,7 +23,7 @@
                     _="on change show <option/> in #languages when its @data-country contains my value"
 
             >
-                <option value="fr"  >fr</option>
+                <option value="fr">fr</option>
                 <option value="es" >es</option>
                 <option value="en">en</option>
                 <option value="ca">ca</option>

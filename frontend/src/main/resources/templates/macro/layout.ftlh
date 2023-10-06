@@ -8,6 +8,11 @@
         <#--        <script src="/webjars/htmx.org/1.9.4/dist/ext/json-enc.js"></script>-->
         <#--        <script src="/webjars/htmx.org/1.9.4/dist/ext/debug.js"></script>-->
         <script src="/webjars/hyperscript.org/0.9.11/dist/_hyperscript.js"></script>
+        <script src="/webjars/webcomponents__webcomponentsjs/2.7.0/webcomponents-loader.js"></script>
+<#--        <script src="/webjars/lit-element/3.3.1/lit-element.js?module"></script>-->
+<#--        <script src="https://unpkg.com/@webcomponents/webcomponentsjs@latest/webcomponents-loader.js"></script>-->
+        <script type="module" src="/static/webComponents.js">
+        </script>
 
         <link rel="stylesheet" href="/static/normalize.css"/>
         <link rel="stylesheet" href="/webjars/picocss__pico/1.5.10/css/pico.css"/>
@@ -17,6 +22,8 @@
 
     </head>
     <body>
+
+    <my-element mood="great"></my-element>
     <script type="text/javascript">
         function downloadExportFor(element, baseUrl, targetForm) {
             function computeUrlFrom(relativePath, parameters) {

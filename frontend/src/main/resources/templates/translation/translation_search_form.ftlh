@@ -6,6 +6,7 @@
 
 
     <div class="grid">
+        <toggleable-checkbox hx-get="machinnnnnn" hx-trigger="updatedValue" leftValue="MACHIN" rightValue="TRUC" noValue="WALOU" currentValue="WALOU"></toggleable-checkbox>
         <div>
             <@u.selectField fieldName="partners" fieldLabel="Partner" options=partners multiple=true />
         </div>

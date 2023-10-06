@@ -34,6 +34,7 @@
 
     <my-element hx-get="/machin" mood="great"></my-element>
     <my-element2 mood="great"></my-element2>
+
     <script type="text/javascript">
         function downloadExportFor(element, baseUrl, targetForm) {
             function computeUrlFrom(relativePath, parameters) {

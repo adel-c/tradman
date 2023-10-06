@@ -9,6 +9,10 @@
         <#--        <script src="/webjars/htmx.org/1.9.4/dist/ext/debug.js"></script>-->
         <script src="/webjars/hyperscript.org/0.9.11/dist/_hyperscript.js"></script>
 
+        <meta name="htmx-config" content='{"globalViewTransitions":"true"}'>
+<script type="module" src="/static/index-9968bab0.js"></script>
+<script type="module" src="/static/Button.js"></script>
+<script type="module" src="/static/Card.js"></script>
         <link rel="stylesheet" href="/static/normalize.css"/>
         <link rel="stylesheet" href="/webjars/picocss__pico/1.5.10/css/pico.css"/>
 <#--        <link rel="stylesheet" href="/static/style.css"/>-->
@@ -63,7 +67,6 @@
 <#--                </ul>-->
 <#--            </nav>-->
 <#--        </aside>-->
-
 
     <div class="parent">
         <header class=" section">Header</header>

@@ -20,13 +20,13 @@
 
             <label for="countriess">countries</label>
             <select id="countriess" name="countriess"
-                    _="on change show <option/> in #languages when its @data-country contains my value"
+                    _="on change show <option/> in #languages when its value contains my @data-country end on change log @data-country "
 
             >
-                <option value="fr"  >fr</option>
-                <option value="es" >es</option>
-                <option value="en">en</option>
-                <option value="ca">ca</option>
+                <option value="fr" data-country="en;fr"  >fr</option>
+                <option value="es" data-country="en;es">es</option>
+                <option value="gb"  data-country="en">gb</option>
+                <option value="ca" data-country="ca;fr">ca</option>
 
             </select>
 
@@ -35,9 +35,9 @@
                         multiple
 
             >
-                <option value="fr" data-country="gb;fr" >fr</option>
-                <option value="es" data-country="gb;es" >es</option>
-                <option value="en" data-country="gb;fr">en</option>
+                <option value="fr"  >fr</option>
+                <option value="es"  >es</option>
+                <option value="en">en</option>
                 <option value="ca">ca</option>
 
             </select>

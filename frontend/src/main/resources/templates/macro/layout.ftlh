@@ -8,6 +8,8 @@
             {
              "imports": {
                  "lit": "/webjars/lit/2.8.0/index.js",
+                 "lit/directives/class-map.js": "/webjars/lit/2.8.0/directives/class-map.js",
+                 "lit-html/directives/class-map.js": "/webjars/lit-html/2.8.0/directives/class-map.js",
                  "@lit/reactive-element": "/webjars/lit__reactive-element/1.6.1/reactive-element.js",
                  "lit-html": "/webjars/lit-html/2.8.0/lit-html.js",
                  "lit-element/lit-element.js": "/webjars/lit-element/3.3.1/lit-element.js"

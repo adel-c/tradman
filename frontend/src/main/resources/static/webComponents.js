@@ -1,5 +1,6 @@
 // import {LitElement, html, css} from 'https://unpkg.com/lit-element/lit-element.js?module';
-import {LitElement, html, css} from 'lit-element/lit-element.js';
+import {css, html, LitElement} from 'lit-element/lit-element.js';
+import {classMap} from 'lit/directives/class-map.js';
 
 class ToggleableCheckbox extends LitElement {
     static formAssociated = true;
@@ -13,14 +14,23 @@ class ToggleableCheckbox extends LitElement {
         }
     }
 
+    constructor() {
+        super();
+        this.leftClasses = {selected: false};
+        this.rightClasses = {selected: false};
+
+    }
     static get styles() {
-        return css`.mood { color: green; }`;
+        return css`
+          .selected { color: green; }
+        `;
     }
 
     render() {
         return html`
             <input value="${this.value}" name="${this.name}" readonly hidden="hidden">
-            <div  @click="${this._toggleLeft}">${this.leftValue}</div><div  @click="${this._toggleRight}">${this.rightValue}</div>`;
+            <div class=${classMap(this.leftClasses)} @click="${this._toggleLeft}">${this.leftValue}</div>
+            <div class=${classMap(this.rightClasses)} @click="${this._toggleRight}">${this.rightValue}</div>`;
     }
     _toggleLeft(e) {
         console.log(e);
@@ -29,6 +39,13 @@ class ToggleableCheckbox extends LitElement {
         }else{
             this.value=this.leftValue;
         }
+        this._updateClass();
+    }
+
+    _updateClass() {
+
+        this.leftClasses.selected=this.value===this.leftValue;
+        this.rightClasses.selected=this.value===this.rightValue;
 
     }
     // createRenderRoot() {
@@ -41,7 +58,7 @@ class ToggleableCheckbox extends LitElement {
         }else{
             this.value=this.rightValue;
         }
-
+        this._updateClass();
     }
 }
 class MyElement extends LitElement {

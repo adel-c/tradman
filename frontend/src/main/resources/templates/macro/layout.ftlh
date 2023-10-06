@@ -4,12 +4,21 @@
     <head>
         <meta charset="UTF-8">
         <title>${title}</title>
+        <script type="importmap">
+            {
+             "imports": {
+                 "lit": "/webjars/lit/2.8.0/index.js",
+                 "@lit/reactive-element": "/webjars/lit__reactive-element/1.6.1/reactive-element.js",
+                 "lit-html": "/webjars/lit-html/2.8.0/lit-html.js",
+                 "lit-element/lit-element.js": "/webjars/lit-element/3.3.1/lit-element.js"
+             }
+         }
+        </script>
         <script src="/webjars/htmx.org/1.9.4/dist/htmx.js"></script>
         <#--        <script src="/webjars/htmx.org/1.9.4/dist/ext/json-enc.js"></script>-->
         <#--        <script src="/webjars/htmx.org/1.9.4/dist/ext/debug.js"></script>-->
         <script src="/webjars/hyperscript.org/0.9.11/dist/_hyperscript.js"></script>
         <script src="/webjars/webcomponents__webcomponentsjs/2.7.0/webcomponents-loader.js"></script>
-<#--        <script src="/webjars/lit-element/3.3.1/lit-element.js?module"></script>-->
 <#--        <script src="https://unpkg.com/@webcomponents/webcomponentsjs@latest/webcomponents-loader.js"></script>-->
         <script type="module" src="/static/webComponents.js">
         </script>
@@ -23,7 +32,8 @@
     </head>
     <body>
 
-    <my-element mood="great"></my-element>
+    <my-element hx-get="/machin" mood="great"></my-element>
+    <my-element2 mood="great"></my-element2>
     <script type="text/javascript">
         function downloadExportFor(element, baseUrl, targetForm) {
             function computeUrlFrom(relativePath, parameters) {

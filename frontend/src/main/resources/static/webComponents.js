@@ -8,7 +8,8 @@ class ToggleableCheckbox extends LitElement {
             leftValue: {type: String},
             rightValue: {type: String},
             noValue: {type: String},
-            value:{type:String}
+            value:{type:String},
+            name:{type:String}
         }
     }
 
@@ -18,7 +19,7 @@ class ToggleableCheckbox extends LitElement {
 
     render() {
         return html`
-            <input value="${this.value}" name="leShadowChamp" readonly>
+            <input value="${this.value}" name="${this.name}" readonly hidden="hidden">
             <div  @click="${this._toggleLeft}">${this.leftValue}</div><div  @click="${this._toggleRight}">${this.rightValue}</div>`;
     }
     _toggleLeft(e) {
@@ -28,17 +29,11 @@ class ToggleableCheckbox extends LitElement {
         }else{
             this.value=this.leftValue;
         }
-            this.dispatchEvent(new CustomEvent('updatedValue', {
-                detail: {
-                    value: this.value
-                },
-                composed: true,
-                bubbles: true
-            }));
+
     }
-    createRenderRoot() {
-        return this; // will render the template without shadow DOM
-    }
+    // createRenderRoot() {
+    //     return this; // will render the template without shadow DOM
+    // }
     _toggleRight(e) {
         console.log(e);
         if(this.value ===this.rightValue){
@@ -46,13 +41,7 @@ class ToggleableCheckbox extends LitElement {
         }else{
             this.value=this.rightValue;
         }
-        this.dispatchEvent(new CustomEvent('updatedValue', {
-            detail: {
-                value: this.value
-            },
-            composed: true,
-            bubbles: true
-        }));
+
     }
 }
 class MyElement extends LitElement {

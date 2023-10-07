@@ -28,35 +28,34 @@ class ToggleableCheckbox extends LitElement {
 
     render() {
         return html`
-            <input value="${this.value}" name="${this.name}" readonly hidden="hidden">
-            <div class=${classMap(this.leftClasses)} @click="${this._toggleLeft}">${this.leftValue}</div>
-            <div class=${classMap(this.rightClasses)} @click="${this._toggleRight}">${this.rightValue}</div>`;
+            <div>
+                 <input value="${this.value}" name="${this.name}" readonly hidden="hidden">
+                <div class=${classMap(this.leftClasses)} @click="${this._toggleLeft}">${this.leftValue}</div>
+                <slot></slot>
+                <div class=${classMap(this.rightClasses)} @click="${this._toggleRight}">${this.rightValue}</div>
+                
+            </div>`;
+
     }
     _toggleLeft(e) {
-        console.log(e);
-        if(this.value ===this.leftValue){
-            this.value=this.noValue;
-        }else{
-            this.value=this.leftValue;
-        }
-        this._updateClass();
+        this._toggleValue(this.leftValue)
     }
-
+    _toggleRight(e) {
+        this._toggleValue(this.rightValue)
+    }
     _updateClass() {
-
         this.leftClasses.selected=this.value===this.leftValue;
         this.rightClasses.selected=this.value===this.rightValue;
-
     }
     // createRenderRoot() {
     //     return this; // will render the template without shadow DOM
     // }
-    _toggleRight(e) {
-        console.log(e);
-        if(this.value ===this.rightValue){
+
+    _toggleValue(expected){
+        if(this.value ===expected){
             this.value=this.noValue;
         }else{
-            this.value=this.rightValue;
+            this.value=expected;
         }
         this._updateClass();
     }

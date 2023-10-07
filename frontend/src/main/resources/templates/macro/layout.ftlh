@@ -17,6 +17,7 @@
          }
         </script>
         <script src="/webjars/htmx.org/1.9.4/dist/htmx.js"></script>
+        <script src="/webjars/alpinejs/3.13.0/dist/cdn.js" defer></script>
         <#--        <script src="/webjars/htmx.org/1.9.4/dist/ext/json-enc.js"></script>-->
         <#--        <script src="/webjars/htmx.org/1.9.4/dist/ext/debug.js"></script>-->
         <script src="/webjars/hyperscript.org/0.9.11/dist/_hyperscript.js"></script>

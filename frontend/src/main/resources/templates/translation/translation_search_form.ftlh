@@ -6,7 +6,23 @@
 
 
     <div class="grid">
+        <div>
         <toggleable-checkbox style="width: 9rem" name="leCHAMPS" leftValue="MACHIN" rightValue="TRUC" noValue="WALOU" value="WALOU"></toggleable-checkbox>
+
+            <div class="toggleable-checkbox" x-data="{leftValue:'MACHIN', rightValue:'TRUC', noValue:'WALOU', currentValue:'WALOU' }" >
+                <input name="leCHAMPS2" readonly hidden="hidden"  :value="currentValue" />
+                <span  class="toggleable-checkbox__left-side-value toggleable-checkbox__side-value"
+                       :class="currentValue===leftValue?'toggleable-checkbox__selected':''"
+                       @click="currentValue = (currentValue==leftValue)?noValue:leftValue" x-text="leftValue"></span>
+                <span  class="toggleable-checkbox__right-side-value toggleable-checkbox__side-value"
+                       :class="currentValue===rightValue?'toggleable-checkbox__selected':''"
+                       @click="currentValue = (currentValue==rightValue)?noValue:rightValue" x-text="rightValue"></span>
+
+
+            </div>
+
+        </div>
+
         <div>
             <@u.selectField fieldName="partners" fieldLabel="Partner" options=partners multiple=true />
         </div>

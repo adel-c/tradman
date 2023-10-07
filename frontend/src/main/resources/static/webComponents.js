@@ -18,25 +18,64 @@ class ToggleableCheckbox extends LitElement {
     constructor() {
         console.log("constructor");
         super();
-        this.leftClasses = {selected: false};
-        this.rightClasses = {selected: false};
+        this.leftClasses = {"side-value":true,"left-side-value":true,selected: false};
+        this.rightClasses = {"side-value":true,"right-side-value":true,selected: false};
 
     }
     static get styles() {
         console.log("styles");
         return css`
-          .selected { color: green; }
+          * {
+            --toggleable-checkbox-radius: 30%;
+            --toggleable-checkbox-border-color: #3a3939;
+            --toggleable-checkbox-border-size: 1px;
+
+          }
+
+          .toggleable-checkbox {
+            cursor: pointer;
+            gap: 0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+          }
+
+          .side-value {
+            width: 50%;
+            background-color: #AEB3BBFF;
+            user-select: none;
+            margin: 0;
+            padding: 0;
+          }
+
+          .left-side-value {
+        
+            border-right: var(--toggleable-checkbox-border-size) solid var(--toggleable-checkbox-border-color);
+            border-top-left-radius: var(--toggleable-checkbox-radius);
+            border-bottom-left-radius: var(--toggleable-checkbox-radius);
+            text-align: right;
+          }
+
+          .right-side-value {
+            border-left: var(--toggleable-checkbox-border-size) solid var(--toggleable-checkbox-border-color);
+            border-top-right-radius: var(--toggleable-checkbox-radius);
+            border-bottom-right-radius: var(--toggleable-checkbox-radius);
+          }
+
+          .selected {
+            background-color: #999999;
+          }
         `;
     }
 
     render() {
         console.log("render");
         return html`
-            <div>
+            <div class="toggleable-checkbox">
                  <input value="${this.value}" name="${this.name}" readonly hidden="hidden">
-                <div class=${classMap(this.leftClasses)} @click="${this._toggleLeft}">${this.leftValue}</div>
-                <slot></slot>
-                <div class=${classMap(this.rightClasses)} @click="${this._toggleRight}">${this.rightValue}</div>
+                <span class=${classMap(this.leftClasses)} @click="${this._toggleLeft}">${this.leftValue}</span>
+                <span class=${classMap(this.rightClasses)} @click="${this._toggleRight}">${this.rightValue}</span>
                 
             </div>`;
 

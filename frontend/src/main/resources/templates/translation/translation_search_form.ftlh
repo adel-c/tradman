@@ -6,7 +6,7 @@
 
 
     <div class="grid">
-        <toggleable-checkbox name="leCHAMPS" leftValue="MACHIN" rightValue="TRUC" noValue="WALOU" value="WALOU"></toggleable-checkbox>
+        <toggleable-checkbox style="width: 9rem" name="leCHAMPS" leftValue="MACHIN" rightValue="TRUC" noValue="WALOU" value="WALOU"></toggleable-checkbox>
         <div>
             <@u.selectField fieldName="partners" fieldLabel="Partner" options=partners multiple=true />
         </div>

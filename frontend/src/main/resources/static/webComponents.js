@@ -5,6 +5,7 @@ import {classMap} from 'lit/directives/class-map.js';
 class ToggleableCheckbox extends LitElement {
     static formAssociated = true;
     static get properties() {
+        console.log("properties");
         return {
             leftValue: {type: String},
             rightValue: {type: String},
@@ -15,18 +16,21 @@ class ToggleableCheckbox extends LitElement {
     }
 
     constructor() {
+        console.log("constructor");
         super();
         this.leftClasses = {selected: false};
         this.rightClasses = {selected: false};
 
     }
     static get styles() {
+        console.log("styles");
         return css`
           .selected { color: green; }
         `;
     }
 
     render() {
+        console.log("render");
         return html`
             <div>
                  <input value="${this.value}" name="${this.name}" readonly hidden="hidden">
@@ -38,12 +42,15 @@ class ToggleableCheckbox extends LitElement {
 
     }
     _toggleLeft(e) {
+        console.log("tl");
         this._toggleValue(this.leftValue)
     }
     _toggleRight(e) {
+        console.log("tg");
         this._toggleValue(this.rightValue)
     }
     _updateClass() {
+        console.log("updateClass");
         this.leftClasses.selected=this.value===this.leftValue;
         this.rightClasses.selected=this.value===this.rightValue;
     }
@@ -52,6 +59,7 @@ class ToggleableCheckbox extends LitElement {
     // }
 
     _toggleValue(expected){
+        console.log("tv");
         if(this.value ===expected){
             this.value=this.noValue;
         }else{

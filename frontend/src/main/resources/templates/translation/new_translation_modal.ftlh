@@ -4,8 +4,12 @@
     <label for="${fieldName}">${fieldLabel}</label>
     <input id="${fieldName}" type="text" name="${fieldName}" readonly value="${value}"/>
 </#macro>
-<dialog id="new_translation_modal" _="on closeModal transition opacity to 0  remove me end on load call me.showModal()"
-        <#--        on closeModal add .modal-is-closing then wait for animationend then remove me-->
+<dialog  x-data="{open:true}"  id="new_translation_modal"  @close-modal = "open=false;setTimeout(()=>$refs.modal.remove(),300)"
+        x-transition.duration.300ms
+         x-ref="modal"
+         @htmx:load="console.log($event);$refs.modal.showModal()"
+        x-show="open"
+
 >
     <#assign hasATraslation= translation?has_content/>
 
@@ -16,7 +20,9 @@
             <h3>New Translation</h3>
         </#if>
 
-        <form hx-post="/translation" hx-history="false" _="on htmx:afterRequest transition opacity to 0  trigger closeModal" hx-swap="none">
+        <form hx-post="/translation" hx-history="false" <#--_="on htmx:afterRequest transition opacity to 0  trigger closeModal"-->
+              @htmx:after-request.camel="$dispatch('close-modal')"
+              hx-swap="none">
             <#if hasATraslation>
                 <@readOnlyField fieldName="key" fieldLabel="Key" value=translation.key/>
                 <div class="grid">
@@ -56,8 +62,8 @@
             <input id="value" type="text" name="value" value="${hasATraslation?then(translation.value,'')}" autocomplete="off"/>
             <footer class="grid">
 
-                <button _="on click halt the event then trigger closeModal" role="button">Close</button>
-                <button   _="on click toggle @disabled until htmx:afterOnLoad" >Submit</button>
+                <button <#--_="on click halt the event then trigger closeModal" --> @click.prevent="$dispatch('close-modal')" role="button">Close</button>
+                <button x-data="{disableSave:false}" @click="disableSave=true" :disabled="disableSave" >Submit</button>
             </footer>
         </form>
     </article>

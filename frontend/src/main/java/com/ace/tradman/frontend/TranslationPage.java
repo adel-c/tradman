@@ -152,7 +152,7 @@ public class TranslationPage {
                      HttpServletResponse response,
                      @ModelAttribute Translation translation
     ) throws InterruptedException {
-        Thread.sleep(3000);
+       Thread.sleep(3000);
         translationService.upsertTranslation(translation);
         //model.addAttribute("translations", translationService.findAll());
         // return "translation/translation_table_body";

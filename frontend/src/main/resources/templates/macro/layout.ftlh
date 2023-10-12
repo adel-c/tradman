@@ -19,7 +19,6 @@
         <script src="/static/multiselectalpine.js"></script>
         <script src="/webjars/htmx.org/1.9.6/dist/htmx.js"></script>
         <script src="/webjars/alpinejs/3.13.1/dist/cdn.js" defer></script>
-        <script src="/webjars/alpinejs" defer></script>
         <script src="https://cdn.tailwindcss.com"></script>
         <script defer src="https://unpkg.com/@alpinejs/focus@3.x.x/dist/cdn.min.js"></script>
         <#--        <script src="/webjars/htmx.org/1.9.4/dist/ext/json-enc.js"></script>-->

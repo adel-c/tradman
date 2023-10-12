@@ -4,7 +4,30 @@
       hx-trigger="translation-clear-search-form from:body"
       hx-get="translation/translation-search-form" hx-swap="outerHTML">
 
-    <@u.multiSelect "aze" "name" partners></@u.multiSelect>
+<#--    <@u.multiSelect "aze" "name" partners></@u.multiSelect>-->
+    <div style="padding: 4rem"></div>
+<#--    <select id="aaa" name="machin" multiple>-->
+<#--        <option value="AA">A</option>-->
+<#--        <option value="BB">B</option>-->
+<#--        <option value="CC">C</option>-->
+<#--    </select>-->
+
+    <multi-multi
+            name="lachun"
+            selecteditem="badge bg-primary pt-1 m-1"
+            dropdown="border"
+            dropdownitem="p-1"
+            selectallbutton="btn btn-sm btn-light"
+            selectallbuttonspan="bi-check2-all text-success"
+            clearbutton="btn btn-sm btn-light"
+            clearbuttonspan="bi-x-circle text-danger"
+    >
+        <option value="AA">A</option>
+        <option value="BB">B</option>
+        <option value="CC">C</option>
+        <option value="CD">D</option>
+    </multi-multi>
+    <div style="padding: 4rem"></div>
     <div class="grid">
         <div>
         <toggleable-checkbox style="width: 9rem" name="leCHAMPS" leftValue="MACHIN" rightValue="TRUC" noValue="WALOU" value="WALOU"></toggleable-checkbox>

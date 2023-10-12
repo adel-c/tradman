@@ -24,9 +24,10 @@
         <#--        <script src="/webjars/htmx.org/1.9.4/dist/ext/json-enc.js"></script>-->
         <#--        <script src="/webjars/htmx.org/1.9.4/dist/ext/debug.js"></script>-->
         <script src="/webjars/hyperscript.org/0.9.11/dist/_hyperscript.js"></script>
-        <script src="/webjars/webcomponents__webcomponentsjs/2.7.0/webcomponents-loader.js"></script>
+<#--        <script src="/webjars/webcomponents__webcomponentsjs/2.7.0/webcomponents-loader.js"></script>-->
 <#--        <script src="https://unpkg.com/@webcomponents/webcomponentsjs@latest/webcomponents-loader.js"></script>-->
-        <script type="module" src="/static/webComponents.js">
+<#--        <script type="module" src="/static/webComponents.js">-->
+        <script type="module" src="/static/multiselect_native_webcomponent.js">
 
         </script>
 

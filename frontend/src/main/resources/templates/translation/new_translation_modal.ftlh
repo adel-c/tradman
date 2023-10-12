@@ -22,6 +22,8 @@
 
         <form hx-post="/translation" hx-history="false" <#--_="on htmx:afterRequest transition opacity to 0  trigger closeModal"-->
               @htmx:after-request.camel="$dispatch('close-modal')"
+              @htmx:validation:failed="console.log('failed',$event)"
+              @submit="console.log($event)"
               hx-swap="none">
             <#if hasATraslation>
                 <@readOnlyField fieldName="key" fieldLabel="Key" value=translation.key/>
@@ -59,11 +61,14 @@
 
             </#if>
             <label for="value">value</label>
-            <input id="value" type="text" name="value" value="${hasATraslation?then(translation.value,'')}" autocomplete="off"/>
+            <input id="value" type="text"  name="value" value="${hasATraslation?then(translation.value,'')}" autocomplete="off"
+            @htmx:validation:validate="console.log($event,$el,$el.value);if($el.value === 'aa'){$el.setCustomValidity('')}else{$el.setCustomValidity('cfo')};"
+            @change="console.log($event,$el,$el.value);if($el.value === 'aa'){$el.setCustomValidity('')}else{$el.setCustomValidity('cfo')};"
+            />
             <footer class="grid">
 
                 <button <#--_="on click halt the event then trigger closeModal" --> @click.prevent="$dispatch('close-modal')" role="button">Close</button>
-                <button x-data="{disableSave:false}" @click="disableSave=true" :disabled="disableSave" >Submit</button>
+                <button x-data="{disableSave:false}" @htmx:before-request="disableSave=true" :disabled="disableSave" >Submit</button>
             </footer>
         </form>
     </article>

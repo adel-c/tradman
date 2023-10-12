@@ -101,3 +101,7 @@ div[role=button] {
 .toggleable-checkbox__selected {
     background-color: #999999;
 }
+
+input:invalid{
+    border-color: red;
+}

@@ -11,22 +11,25 @@
 <#--        <option value="BB">B</option>-->
 <#--        <option value="CC">C</option>-->
 <#--    </select>-->
+    <input type="text" class=" " placeholder="" style="" value="mamaa"/>
+    <div style="width: 30rem">
+        <multi-multi
+                name="lachun"
+                <#--            selecteditem="badge bg-primary pt-1 m-1"-->
+                <#--            dropdown="border"-->
+                <#--            dropdownitem="p-1"-->
+                <#--            selectallbutton="btn btn-sm btn-light"-->
+                <#--            selectallbuttonspan="bi-check2-all text-success"-->
+                <#--            clearbutton="btn btn-sm btn-light"-->
+                <#--            clearbuttonspan="bi-x-circle text-danger"-->
+        >
+            <option value="AA">A</option>
+            <option value="BB">B</option>
+            <option value="CC">C</option>
+            <option value="CD">D</option>
+        </multi-multi>
+    </div>
 
-    <multi-multi
-            name="lachun"
-            selecteditem="badge bg-primary pt-1 m-1"
-            dropdown="border"
-            dropdownitem="p-1"
-            selectallbutton="btn btn-sm btn-light"
-            selectallbuttonspan="bi-check2-all text-success"
-            clearbutton="btn btn-sm btn-light"
-            clearbuttonspan="bi-x-circle text-danger"
-    >
-        <option value="AA">A</option>
-        <option value="BB">B</option>
-        <option value="CC">C</option>
-        <option value="CD">D</option>
-    </multi-multi>
     <div style="padding: 4rem"></div>
     <div class="grid">
         <div>

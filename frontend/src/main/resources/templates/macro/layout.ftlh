@@ -19,7 +19,7 @@
         <script src="/static/multiselectalpine.js"></script>
         <script src="/webjars/htmx.org/1.9.6/dist/htmx.js"></script>
         <script src="/webjars/alpinejs/3.13.1/dist/cdn.js" defer></script>
-        <script src="https://cdn.tailwindcss.com"></script>
+<#--        <script src="https://cdn.tailwindcss.com"></script>-->
         <script defer src="https://unpkg.com/@alpinejs/focus@3.x.x/dist/cdn.min.js"></script>
         <#--        <script src="/webjars/htmx.org/1.9.4/dist/ext/json-enc.js"></script>-->
         <#--        <script src="/webjars/htmx.org/1.9.4/dist/ext/debug.js"></script>-->
@@ -32,9 +32,11 @@
         </script>
 
         <link rel="stylesheet" href="/static/normalize.css"/>
+
         <link rel="stylesheet" href="/webjars/picocss__pico/1.5.10/css/pico.css"/>
 <#--        <link rel="stylesheet" href="/static/style.css"/>-->
                 <link rel="stylesheet" href="/static/main.css"/>
+        <link rel="stylesheet" href="/static/multiselect.css"/>
         <#--        <link rel="stylesheet" href="/modal_style.css"/>-->
 
     </head>

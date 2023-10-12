@@ -4,7 +4,7 @@
       hx-trigger="translation-clear-search-form from:body"
       hx-get="translation/translation-search-form" hx-swap="outerHTML">
 
-
+    <@u.multiSelect "aze" "name" partners></@u.multiSelect>
     <div class="grid">
         <div>
         <toggleable-checkbox style="width: 9rem" name="leCHAMPS" leftValue="MACHIN" rightValue="TRUC" noValue="WALOU" value="WALOU"></toggleable-checkbox>

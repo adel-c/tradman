@@ -38,7 +38,18 @@
         <dependency>
             <groupId>org.webjars.npm</groupId>
             <artifactId>alpinejs</artifactId>
-            <version>3.13.0</version>
+            <version>3.13.1</version>
+        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.webjars.npm</groupId>-->
+<!--            <artifactId>alpinejs__focus</artifactId>-->
+<!--            <version>3.13.1</version>-->
+<!--        </dependency>-->
+
+        <dependency>
+            <groupId>org.webjars.npm</groupId>
+            <artifactId>tailwindcss</artifactId>
+            <version>3.3.3</version>
         </dependency>
         <dependency>
             <groupId>org.webjars.npm</groupId>

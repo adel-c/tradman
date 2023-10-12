@@ -16,14 +16,19 @@
              }
          }
         </script>
+        <script src="/static/multiselectalpine.js"></script>
         <script src="/webjars/htmx.org/1.9.6/dist/htmx.js"></script>
-        <script src="/webjars/alpinejs/3.13.0/dist/cdn.js" defer></script>
+        <script src="/webjars/alpinejs/3.13.1/dist/cdn.js" defer></script>
+        <script src="/webjars/alpinejs" defer></script>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script defer src="https://unpkg.com/@alpinejs/focus@3.x.x/dist/cdn.min.js"></script>
         <#--        <script src="/webjars/htmx.org/1.9.4/dist/ext/json-enc.js"></script>-->
         <#--        <script src="/webjars/htmx.org/1.9.4/dist/ext/debug.js"></script>-->
         <script src="/webjars/hyperscript.org/0.9.11/dist/_hyperscript.js"></script>
         <script src="/webjars/webcomponents__webcomponentsjs/2.7.0/webcomponents-loader.js"></script>
 <#--        <script src="https://unpkg.com/@webcomponents/webcomponentsjs@latest/webcomponents-loader.js"></script>-->
         <script type="module" src="/static/webComponents.js">
+
         </script>
 
         <link rel="stylesheet" href="/static/normalize.css"/>

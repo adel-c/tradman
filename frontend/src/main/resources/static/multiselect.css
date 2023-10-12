@@ -1,3 +1,13 @@
+.msw-parent{
+    display: flex;
+    flex-direction: column;
+
+}
+.msw-actionbar{
+    display: flex;
+    flex-direction: row;
+
+}
 .msw-dropdown {
     border: blue 1px solid;
     background-color: #999999;

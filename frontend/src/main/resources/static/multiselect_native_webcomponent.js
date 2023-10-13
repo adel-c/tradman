@@ -14,7 +14,29 @@ class MultiselectWebcomponent extends HTMLElement {
         // Keeping options
         this.querySelectorAll('option').forEach(option => this.options.push(option.cloneNode(true)));
         this.setValuesOnConstructor(this.getAttribute('value'));
+
         let htmlTemplateElement = this.querySelector('template');
+        if(htmlTemplateElement){
+            console.log("found template")
+        }else{
+            console.log("nop");
+
+            let defaultTemplate =this.buildDefaultTemplate();
+            console.log(defaultTemplate)
+            this.appendChild(defaultTemplate)
+            htmlTemplateElement = this.querySelector('template');
+        }
+        this.innerHTML='';
+        const clone = htmlTemplateElement.content.cloneNode(true);
+        this.appendChild(clone)
+
+        this.searchbox = this.querySelector('.msw-searchbox');
+        this.dropdown = this.querySelector('.msw-dropdown');
+        this.dropdownWrapper = this.querySelector('.msw-dropdown-wrapper');
+        this.selected = this.querySelector('.msw-selected');
+        this.buttons = this.querySelector('.msw-buttons');
+        this.actionBar = this.querySelector('.msw-actionbar');
+
         // Search input
         this.searchbox.type = 'search';
 
@@ -47,7 +69,7 @@ class MultiselectWebcomponent extends HTMLElement {
         // Structure
         this.style.display = 'flex';
         this.style.height = 'max-content';
-        this.innerHTML = '';
+
         this.appendChild(this.selected);
 
         this.actionBar.appendChild(this.searchbox);
@@ -91,7 +113,30 @@ class MultiselectWebcomponent extends HTMLElement {
         // Build
         this.build();
     }
+    buildDefaultTemplate(){
+        let htmlString =
+            //language=html
+            `
+                    <div class="msw-selected " style="display: flex; flex-wrap: wrap; flex-grow: 1;">
 
+                    </div>
+                    <div class="msw-actionbar">
+                        <input type="search" class="msw-searchbox" style="flex-grow: 1;" placeholder=""/>
+                        <div style="display: flex;" class="msw-buttons">
+                            <button class="msw-selectallbutton " title="Select All">A</button>
+                            <button class="msw-clearbutton " title="Clear Selection">C</button>
+                        </div>
+                    </div>
+                    <div class="msw-dropdown-wrapper">
+                        <div class="msw-dropdown" style="display: none; width: 100%; position: absolute; z-index: 2;">
+                        </div>
+                    </div>
+            `;
+         let defaultTemplate = new DOMParser().parseFromString(htmlString, "text/xml");
+        let htmlTemplateElement = document.createElement('template');
+        htmlTemplateElement.innerHTML=htmlString;
+        return htmlTemplateElement
+    }
     addClassToElement(element,className){
         if(className){
             element.classList.add(className)

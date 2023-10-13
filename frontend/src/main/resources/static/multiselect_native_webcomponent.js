@@ -14,21 +14,20 @@ class MultiselectWebcomponent extends HTMLElement {
         // Keeping options
         this.querySelectorAll('option').forEach(option => this.options.push(option.cloneNode(true)));
         this.setValuesOnConstructor(this.getAttribute('value'));
-
+        let htmlTemplateElement = this.querySelector('template');
         // Search input
         this.searchbox.type = 'search';
 
-        this.searchbox.className = `msw-searchbox ${this.getAttribute('searchbox') || ''}`;
-
+        this.searchbox.className = `msw-searchbox`;
+        this.actionBar.className =`msw-actionbar`
 
          this.searchbox.style.flexGrow = '1';
         // this.searchbox.style.border = '0';
         // this.searchbox.style.outline = 'none';
-        this.addClassToElement(this.searchbox,this.getAttribute('searchbox'))
-        this.searchbox.addEventListener('keyup', (e) => this.onSearchboxKeyup(e));
+
 
         // Selected
-        this.selected.className = `msw-selected ${this.getAttribute('selected') || ''}`;
+        this.selected.className = `msw-selected `;
         this.selected.style.display = 'flex';
         this.selected.style.flexWrap = 'wrap';
         this.selected.style.flexGrow = '1';
@@ -37,14 +36,14 @@ class MultiselectWebcomponent extends HTMLElement {
         this.buttons.style.display = 'flex';
 
         // Dropdown
-        this.dropdown.className = `msw-dropdown ${this.getAttribute('dropdown') || ''}`;
+        this.dropdown.className = `msw-dropdown`;
         this.dropdown.style.display = 'none';
         this.dropdown.style.width = '100%';
         this.dropdown.style.position = 'absolute';
         this.dropdown.style.zIndex = '2';
-        this.dropdown.addEventListener('click', () => this.onDropdownClick());
-        this.dropdownWrapper.className=`msw-dropdown-wrapper ${this.getAttribute('dropdown-wrapper') || ''}`;
-        this.dropdownWrapper.appendChild(this.dropdown)
+
+        this.dropdownWrapper.className=`msw-dropdown-wrapper`;
+        this.dropdownWrapper.appendChild(this.dropdown);
         // Structure
         this.style.display = 'flex';
         this.style.height = 'max-content';
@@ -55,24 +54,40 @@ class MultiselectWebcomponent extends HTMLElement {
         this.actionBar.appendChild(this.buttons);
 
 
-        this.actionBar.className =`msw-actionbar ${this.getAttribute('actionbar') || ''}`
-        this.appendChild(this.actionBar)
+        this.actionBar.className =`msw-actionbar`;
+        this.appendChild(this.actionBar);
+        this.appendChild(this.dropdownWrapper);
+
+
+
+
+
+
+
+
+
+
 
 
         // Events
         this.addEventListener('click', () => this.onMultiselectClick());
         this.parentElement?.addEventListener('mouseleave', () => this.dropdown.style.display = 'none');
+        this.dropdown.addEventListener('click', () => this.onDropdownClick());
+        this.searchbox.addEventListener('keyup', (e) => this.onSearchboxKeyup(e));
 
+        this.addClassToElement(this,"msw-parent");
         // Attributes
+        this.addClassToElement(this.actionBar,this.getAttribute('actionbar'));
+        this.addClassToElement(this.dropdown,this.getAttribute('dropdown'));
+        this.addClassToElement(this.dropdownWrapper,this.getAttribute('dropdown-wrapper'));
+        this.addClassToElement(this.selected,this.getAttribute('selected'));
+        this.addClassToElement(this.searchbox,this.getAttribute('searchbox'));
+
         this.searchbox.placeholder = this.getAttribute('placeholder') || '';
         const disabled = this.getAttribute('disabled');
         if (disabled && disabled !== 'false') {
             this.searchbox.disabled = true;
         }
-
-
-        this.appendChild(this.dropdownWrapper)
-        this.className= "msw-parent"
         // Build
         this.build();
     }

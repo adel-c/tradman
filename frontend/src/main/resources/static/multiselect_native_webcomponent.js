@@ -7,7 +7,7 @@ class MultiselectWebcomponent extends HTMLElement {
     buttons = document.createElement('div');
     innerSelect = document.createElement('select');
     actionBar = document.createElement('div');
-
+    static formAssociated = true;
     constructor() {
         super();
 
@@ -66,18 +66,20 @@ class MultiselectWebcomponent extends HTMLElement {
             this.searchbox.disabled = true;
         }
 
-        this.innerSelect.hidden = true;
-        this.innerSelect.name =this.getAttribute('name') || '';
-        this.innerSelect.multiple = true;
-
-        this.actionBar.appendChild(this.innerSelect)
+        // this.innerSelect.hidden = true;
+        // this.innerSelect.name =this.getAttribute('name') || '';
+        // this.innerSelect.multiple = true;
+        // this.innerSelect.disabled=true;
+        // this.actionBar.appendChild(this.innerSelect)
         this.appendChild(this.dropdownWrapper)
         this.className= "msw-parent"
        // this.parentNode?.insertBefore(this.dropdown, this.nextSibling);
         // Build
         this.build();
     }
-
+    get name(){
+        return this.getAttribute('name') || '';
+    }
     set value(value) {
         for (const option of this.options) {
             option.selected = false;
@@ -151,7 +153,7 @@ class MultiselectWebcomponent extends HTMLElement {
         for (const option of this.options) {
             if (option.selected) {
                 this.selected.appendChild(this.buildSelectedItem(option));
-                this.innerSelect.appendChild(this.buildSelectedOption(option))
+                // this.innerSelect.appendChild(this.buildSelectedOption(option))
             } else {
                 this.dropdown.appendChild(this.buildDropdownItem(option));
             }

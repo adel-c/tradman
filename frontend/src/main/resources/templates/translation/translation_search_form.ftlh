@@ -14,7 +14,7 @@
     <input type="text" class=" " placeholder="" style="" value="mamaa"/>
     <div style="width: 30rem">
         <multi-multi
-                name="lachun"
+                name="turcmuche"
                 <#--            selecteditem="badge bg-primary pt-1 m-1"-->
                 <#--            dropdown="border"-->
                 <#--            dropdownitem="p-1"-->

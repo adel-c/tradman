@@ -1,12 +1,12 @@
 class MultiselectWebcomponent extends HTMLElement {
     static formAssociated = true;
     options = [];
-    searchbox = document.createElement('input');
-    dropdown = document.createElement('div');
-    dropdownWrapper = document.createElement('div');
-    selected = document.createElement('div');
-    buttons = document.createElement('div');
-    actionBar = document.createElement('div');
+    searchbox =null;
+    dropdown = null;
+    dropdownWrapper = null;
+    selected = null;
+    buttons = null;
+    actionBar = null;
 
     constructor() {
         super();
@@ -37,48 +37,7 @@ class MultiselectWebcomponent extends HTMLElement {
         this.buttons = this.querySelector('.msw-buttons');
         this.actionBar = this.querySelector('.msw-actionbar');
 
-        // Search input
-        this.searchbox.type = 'search';
 
-        this.searchbox.className = `msw-searchbox`;
-        this.actionBar.className =`msw-actionbar`
-
-         this.searchbox.style.flexGrow = '1';
-        // this.searchbox.style.border = '0';
-        // this.searchbox.style.outline = 'none';
-
-
-        // Selected
-        this.selected.className = `msw-selected `;
-        this.selected.style.display = 'flex';
-        this.selected.style.flexWrap = 'wrap';
-        this.selected.style.flexGrow = '1';
-
-        // Buttons
-        this.buttons.style.display = 'flex';
-
-        // Dropdown
-        this.dropdown.className = `msw-dropdown`;
-        this.dropdown.style.display = 'none';
-        this.dropdown.style.width = '100%';
-        this.dropdown.style.position = 'absolute';
-        this.dropdown.style.zIndex = '2';
-
-        this.dropdownWrapper.className=`msw-dropdown-wrapper`;
-        this.dropdownWrapper.appendChild(this.dropdown);
-        // Structure
-        this.style.display = 'flex';
-        this.style.height = 'max-content';
-
-        this.appendChild(this.selected);
-
-        this.actionBar.appendChild(this.searchbox);
-        this.actionBar.appendChild(this.buttons);
-
-
-        this.actionBar.className =`msw-actionbar`;
-        this.appendChild(this.actionBar);
-        this.appendChild(this.dropdownWrapper);
 
 
 

@@ -2,6 +2,7 @@ class MultiselectWebcomponent extends HTMLElement {
     options = [];
     searchbox = document.createElement('input');
     dropdown = document.createElement('div');
+    dropdownWrapper = document.createElement('div');
     selected = document.createElement('div');
     buttons = document.createElement('div');
     innerSelect = document.createElement('select');
@@ -38,10 +39,10 @@ class MultiselectWebcomponent extends HTMLElement {
         this.dropdown.style.position = 'absolute';
         this.dropdown.style.zIndex = '2';
         this.dropdown.addEventListener('click', () => this.onDropdownClick());
-
+        this.dropdownWrapper.className=`msw-dropdown-wrapper ${this.getAttribute('dropdown-wrapper') || ''}`;
+        this.dropdownWrapper.appendChild(this.dropdown)
         // Structure
         this.style.display = 'flex';
-        this.style.alignItems = 'center';
         this.style.height = 'max-content';
         this.innerHTML = '';
         this.appendChild(this.selected);
@@ -70,7 +71,7 @@ class MultiselectWebcomponent extends HTMLElement {
         this.innerSelect.multiple = true;
 
         this.actionBar.appendChild(this.innerSelect)
-        this.appendChild(this.dropdown)
+        this.appendChild(this.dropdownWrapper)
         this.className= "msw-parent"
        // this.parentNode?.insertBefore(this.dropdown, this.nextSibling);
         // Build

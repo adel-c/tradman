@@ -91,7 +91,6 @@ class MultiselectWebcomponent extends HTMLElement {
                         </div>
                     </div>
             `;
-         let defaultTemplate = new DOMParser().parseFromString(htmlString, "text/xml");
         let htmlTemplateElement = document.createElement('template');
         htmlTemplateElement.innerHTML=htmlString;
         return htmlTemplateElement

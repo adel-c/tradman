@@ -23,6 +23,24 @@
                 <#--            clearbutton="btn btn-sm btn-light"-->
                 <#--            clearbuttonspan="bi-x-circle text-danger"-->
         >
+            <template>
+                LALALAL
+                <div class="msw-actionbar">
+                    <input type="search" class="msw-searchbox" style="flex-grow: 1;" placeholder=""/>
+                    <div style="display: flex;" class="msw-buttons">
+                        <button class="msw-selectallbutton " title="Select All">A</button>
+                        <button class="msw-clearbutton " title="Clear Selection">C</button>
+                    </div>
+                </div>
+                <div class="msw-selected " style="display: flex; flex-wrap: wrap; flex-grow: 1;">
+
+                </div>
+
+                <div class="msw-dropdown-wrapper">
+                    <div class="msw-dropdown" style="display: none; width: 100%; position: absolute; z-index: 2;">
+                    </div>
+                </div>
+            </template>
             <option value="AA">A</option>
             <option value="BB">B</option>
             <option value="CC">C</option>
